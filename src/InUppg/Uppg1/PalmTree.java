@@ -5,7 +5,7 @@ import javax.swing.*;
 public class PalmTree extends Plant implements WateringCalculator {
     private double height;
     private boolean fruitBearing;
-    private final static String WATER_TYPE = "Kranvatten";
+    private WaterType type = WaterType.TAP_WATER;
     private final static double WATERING_MULTIPLIER = 0.5;
 
     public PalmTree(String name, String owner, double height, boolean fruitBearing) {
@@ -26,8 +26,8 @@ public class PalmTree extends Plant implements WateringCalculator {
         return fruitBearing;
     }
 
-    public String getWaterType() {
-        return WATER_TYPE;
+    public WaterType getWaterType() {
+        return type;
     }
 
     public double getWateringMultiplier() {
@@ -37,7 +37,7 @@ public class PalmTree extends Plant implements WateringCalculator {
 
     @Override
     public String printOut() {
-        String message = "Ge " + calculateAmount() + " liter " + getWaterType();
+        String message = "Ge " + calculateAmount() + " liter " + getWaterType().type;
         return message;
     }
     @Override

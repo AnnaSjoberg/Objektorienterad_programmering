@@ -5,7 +5,7 @@ import javax.swing.*;
 public class CarnivorousPlant extends Plant implements WateringCalculator {
     private double height;
     private String color;
-    private final static String WATER_TYPE = "Proteinvätska";
+    private WaterType type = WaterType.PROTEIN_SOLUTION;
     private final static double WATERING_MULTIPLIER = 0.2;
     private final static double WATERING_BASELEVEL = 0.1;
 
@@ -27,8 +27,8 @@ public class CarnivorousPlant extends Plant implements WateringCalculator {
         return color;
     }
 
-    public String getWaterType() {
-        return WATER_TYPE;
+    public WaterType getWaterType() {
+        return type;
     }
 
     public double getWateringMultiplier() {
@@ -41,7 +41,7 @@ public class CarnivorousPlant extends Plant implements WateringCalculator {
 
     @Override
     public String printOut() {
-        String message = "Ge " + calculateAmount() + " liter " + getWaterType();
+        String message = "Ge " + calculateAmount() + " liter " + getWaterType().type;
         return message;
     }
 

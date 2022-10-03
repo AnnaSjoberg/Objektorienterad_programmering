@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Cactus extends Plant {
     private boolean poisonous;
-    private final static String WATER_TYPE = "Mineralvatten";
+    private WaterType type = WaterType.MINERAL_WATER;
     private final static double WATERING_BASE_AMOUNT = 2;
 
     public Cactus(String name, String owner, boolean poisonous) {
@@ -16,8 +16,8 @@ public class Cactus extends Plant {
         return poisonous;
     }
 
-    public String getWaterType() {
-        return WATER_TYPE;
+    public WaterType getWaterType() {
+        return type;
     }
 
     public double getWateringBaseAmount() {
@@ -26,7 +26,7 @@ public class Cactus extends Plant {
 
     @Override
     public String printOut() {
-        String message="Ge " + getWateringBaseAmount() + " cl " + getWaterType();
+        String message="Ge " + getWateringBaseAmount() + " cl " + getWaterType().type;
         if (isPoisonous()){
             message += "\n Växten är giftig, var försiktig!";
         }
