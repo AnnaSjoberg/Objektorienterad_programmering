@@ -2,11 +2,11 @@ package InUppg.Uppg1;
 
 import javax.swing.*;
 
-public class PalmTree extends Plant implements WateringInfo{
+public class PalmTree extends Plant implements WateringCalculator {
     private double height;
     private boolean fruitBearing;
-    private final String waterType = "Kranvatten";
-    private final double wateringMultiplier = 0.5;
+    private final static String WATER_TYPE = "Kranvatten";
+    private final static double WATERING_MULTIPLIER = 0.5;
 
     public PalmTree(String name, String owner, double height, boolean fruitBearing) {
         super(name, owner);
@@ -27,17 +27,22 @@ public class PalmTree extends Plant implements WateringInfo{
     }
 
     public String getWaterType() {
-        return waterType;
+        return WATER_TYPE;
     }
 
     public double getWateringMultiplier() {
-        return wateringMultiplier;
+        return WATERING_MULTIPLIER;
     }
 
+
     @Override
-    public void printOut() {
-        //Här skriver jag ut informationen om hur vattning
-        JOptionPane.showMessageDialog(null, "Ge " + amountToGive() + " l " + getWaterType());
+    public String printOut() {
+        String message = "Ge " + calculateAmount() + " liter " + getWaterType();
+        return message;
+    }
+    @Override
+    public String name() {
+        return getName();
     }
 
     @Override
@@ -46,4 +51,8 @@ public class PalmTree extends Plant implements WateringInfo{
         return getWateringMultiplier() * getHeight();
     }
 
+    @Override
+    public double calculateAmount() {
+        return getWateringMultiplier() * getHeight();
+    }
 }

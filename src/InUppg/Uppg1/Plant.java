@@ -1,6 +1,6 @@
 package InUppg.Uppg1;
 
-public abstract class Plant {
+public abstract class Plant implements WateringInfo {
     private String name;
     private String owner;
 
@@ -12,8 +12,14 @@ public abstract class Plant {
     public String getName() {
         return name;
     }
+
     public String getOwner() {
         return owner;
     }
-    public void printOut (){}
+
+
+    @Override
+    public abstract double amountToGive();
+
+
 }

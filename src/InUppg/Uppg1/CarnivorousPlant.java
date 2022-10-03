@@ -2,12 +2,12 @@ package InUppg.Uppg1;
 
 import javax.swing.*;
 
-public class CarnivorousPlant extends Plant implements WateringInfo {
+public class CarnivorousPlant extends Plant implements WateringCalculator {
     private double height;
     private String color;
-    private final String waterType = "Proteinvätska";
-    private final double wateringMultiplier = 0.2;
-    private final double wateringBaseAmount = 0.1;
+    private final static String WATER_TYPE = "Proteinvätska";
+    private final static double WATERING_MULTIPLIER = 0.2;
+    private final static double WATERING_BASELEVEL = 0.1;
 
     public CarnivorousPlant(String name, String owner, double height, String color) {
         super(name, owner);
@@ -19,35 +19,45 @@ public class CarnivorousPlant extends Plant implements WateringInfo {
         this.color = color;
     }
 
-    public String getWaterType() {
-        return waterType;
-    }
-
-    public double getWateringMultiplier() {
-        return wateringMultiplier;
+    public double getHeight() {
+        return height;
     }
 
     public String getColor() {
         return color;
     }
 
-    public double getHeight() {
-        return height;
+    public String getWaterType() {
+        return WATER_TYPE;
     }
 
-    public double getWateringBaseAmount() {
-        return wateringBaseAmount;
+    public double getWateringMultiplier() {
+        return WATERING_MULTIPLIER;
+    }
+
+    public double getWateringBaselevel() {
+        return WATERING_BASELEVEL;
     }
 
     @Override
-    public void printOut() {
-        //Här skriver jag ut informationen om hur vattning
-        JOptionPane.showMessageDialog(null, "Ge " + amountToGive() + " l " + getWaterType());
+    public String printOut() {
+        String message = "Ge " + calculateAmount() + " liter " + getWaterType();
+        return message;
+    }
+
+    @Override
+    public String name() {
+        return getName();
     }
 
     @Override
     public double amountToGive() {
         //mängd = 0,1 + 0,2*höjd (liter)
-        return getWateringBaseAmount() + getWateringMultiplier() * getHeight();
+        return getWateringBaselevel() + getWateringMultiplier() * getHeight();
+    }
+
+    @Override
+    public double calculateAmount() {
+        return getWateringBaselevel() + getWateringMultiplier() * getHeight();
     }
 }
