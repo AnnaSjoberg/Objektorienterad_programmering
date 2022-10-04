@@ -5,33 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    PalmTree laura = new PalmTree("Laura", "Hugo", 5, false);
+    PalmTree laura = new PalmTree("Laura", "Hugo", 5, false); //inkapsling i sub- och superklass
     Cactus igge = new Cactus("Igge", "Theo", true);
     CarnivorousPlant meatloaf = new CarnivorousPlant("Meatloaf", "Ture", 0.7, "Rosa");
-    PalmTree putte = new PalmTree("Putte", "Viggo", 1, true);
+    PalmTree putte = new PalmTree("Putte", "Viggo", 1, true); //alla ovanstående ärver Plant
 
-    List<WateringInfo> vatteninfo = new ArrayList<>();
+    List<WateringInfo> vatteninfo = new ArrayList<>(); //WateringInfo = Interface som implementeras av superklassen
 
-    Main() {
+    Main() { //Huvudklassens konstruktor
         vatteninfo.add(laura);
         vatteninfo.add(igge);
         vatteninfo.add(meatloaf);
         vatteninfo.add(putte);
+
         while (true) {
             String inputName = JOptionPane.showInputDialog("Vilken växt vill du vattna?");
-            inputName = inputName.trim();
             if (inputName == null) {
                 JOptionPane.showMessageDialog(null, "Programmet avslutas.");
                 System.exit(0);
             }
-            boolean found = false;
+            inputName = inputName.trim();
+            boolean foundItem = false;
             for (WateringInfo element : vatteninfo) {
                 if (inputName.equalsIgnoreCase(element.name())) {
                     JOptionPane.showMessageDialog(null, element.printOut()); //Polymorfism printOut
-                    found = true;
+                    foundItem = true;
                 }
             }
-            if (!found) { //Inmatat namn återfinns inte i listan över växter.
+            if (!foundItem) { //Inmatat namn återfinns inte i listan över växter.
                 JOptionPane.showMessageDialog(null, "Växten finns inte på hotellet.");
             }
         }

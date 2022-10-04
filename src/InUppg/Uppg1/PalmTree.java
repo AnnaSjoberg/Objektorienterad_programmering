@@ -1,7 +1,5 @@
 package InUppg.Uppg1;
 
-import javax.swing.*;
-
 public class PalmTree extends Plant { //ärver implementering av WateringInfo (interface)
     private boolean fruitBearing;
     private double height;
