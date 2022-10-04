@@ -3,7 +3,6 @@ package InUppg.Uppg1;
 public class CarnivorousPlant extends Plant { //ärver implementering av WateringInfo (interface)
     private String color;
     private double height;
-    private WaterType type = WaterType.PROTEIN_SOLUTION;
     private final static double WATERING_MULTIPLIER = 0.2;
     private final static double WATERING_BASELEVEL = 0.1;
 
@@ -16,14 +15,17 @@ public class CarnivorousPlant extends Plant { //ärver implementering av Waterin
         }
         this.color = color;
     }
+
     public String getColor() {
         return color;
     }
-    public double getHeight() {return height;}
-    public WaterType getWaterType() {
-        return type;
+
+    public double getHeight() {
+        return height;
     }
-    public double getWateringMultiplier() {return WATERING_MULTIPLIER;}
+    public double getWateringMultiplier() {
+        return WATERING_MULTIPLIER;
+    }
     public double getWateringBaselevel() {
         return WATERING_BASELEVEL;
     }
@@ -33,12 +35,16 @@ public class CarnivorousPlant extends Plant { //ärver implementering av Waterin
         return getName();
     }
     @Override
+    public WaterType waterType() {
+        return WaterType.PROTEIN_SOLUTION;
+    }
+    @Override
     public double amountToGive() {
         return getWateringBaselevel() + getWateringMultiplier() * getHeight();
     }
     @Override
     public String printOut() {
-        String message = "Ge " + amountToGive() + " liter " + getWaterType().type;
+        String message = "Ge " + amountToGive() + " liter " + waterType().type;
         return message;
     }
 }

@@ -7,10 +7,12 @@ public abstract class Plant implements WateringInfo {
         this.name = name;
         this.owner = owner;
     }
+
     public String getOwner() {
         return owner;
     }
     public String getName() {return name;}
+
     @Override
     public abstract double amountToGive();
     @Override

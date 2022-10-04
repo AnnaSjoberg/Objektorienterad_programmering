@@ -3,7 +3,6 @@ package InUppg.Uppg1;
 public class PalmTree extends Plant { //ärver implementering av WateringInfo (interface)
     private boolean fruitBearing;
     private double height;
-    private WaterType type = WaterType.TAP_WATER;
     private final static double WATERING_MULTIPLIER = 0.5;
 
     public PalmTree(String name, String owner, double height, boolean fruitBearing) {//konstruktor
@@ -22,9 +21,6 @@ public class PalmTree extends Plant { //ärver implementering av WateringInfo (i
     public boolean isFruitBearing() {
         return fruitBearing;
     }
-    public WaterType getWaterType() {
-        return type;
-    }
     public double getWateringMultiplier() {
         return WATERING_MULTIPLIER;
     }
@@ -34,12 +30,16 @@ public class PalmTree extends Plant { //ärver implementering av WateringInfo (i
         return getName();
     }
     @Override
+    public WaterType waterType() {
+        return WaterType.TAP_WATER;
+    }
+    @Override
     public double amountToGive() {
         return getWateringMultiplier() * getHeight();
     }
     @Override
     public String printOut() {
-        String message = "Ge " + amountToGive() + " liter " + getWaterType().type;
+        String message = "Ge " + amountToGive() + " liter " + waterType().type;
         return message;
     }
 }

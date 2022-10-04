@@ -1,16 +1,13 @@
 package InUppg.Uppg1;
 
 public enum WaterType {
-    TAP_WATER("kranvatten", 1),
-    MINERAL_WATER("mineralvatten", 2),
-    PROTEIN_SOLUTION("proteinlösning", 3);
+    TAP_WATER("kranvatten"),
+    MINERAL_WATER("mineralvatten"),
+    PROTEIN_SOLUTION("proteinlösning");
 
     public final String type;
-    public final Integer typeAsInt;
 
-    WaterType(String type, Integer typeAsInt) {
+    WaterType(String type) {
         this.type = type;
-        this.typeAsInt = typeAsInt;
     }
-
 }
