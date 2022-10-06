@@ -19,7 +19,6 @@ public class CarnivorousPlant extends Plant { //ärver implementering av Waterin
     public String getColor() {
         return color;
     }
-
     public double getHeight() {
         return height;
     }
