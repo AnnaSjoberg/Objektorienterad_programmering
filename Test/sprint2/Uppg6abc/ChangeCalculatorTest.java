@@ -29,8 +29,17 @@ public class ChangeCalculatorTest {
     }
 
     @Test
-    public void getLineToPrintTest(){
-
+    void getEachUnitToStringTest() {
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(0)).equals("\nAntal 1-kronor: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(1)).equals("\nAntal 2-kronor: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(2)).equals("\nAntal 5-kronor: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(3)).equals("\nAntal 10-kronor: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(4)).equals("\nAntal 20-lappar: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(5)).equals("\nAntal 50-lappar: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(6)).equals("\nAntal 100-lappar: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(7)).equals("\nAntal 200-lappar: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(8)).equals("\nAntal 500-lappar: "));
+        assert (cc.getEachUnitToString(cc.currencyUnitsList.get(9)).equals("\nAntal 1000-lappar: "));
     }
 }
 

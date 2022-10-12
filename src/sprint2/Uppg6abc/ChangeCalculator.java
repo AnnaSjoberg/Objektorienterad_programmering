@@ -9,8 +9,7 @@ public class ChangeCalculator {
     private int moneyPaid;
     private final String billSuffix = "-lappar";
     private final String coinSuffix = "-kronor";
-    private final Integer[] tempArray = {1, 2, 5, 10, 20, 50, 100, 200, 500, 1000};
-    private final List<Integer> currencyUnitsList = Arrays.asList(tempArray);
+    protected final List<Integer> currencyUnitsList = List.of(1, 2, 5, 10, 20, 50, 100, 200, 500, 1000);
 
     public ChangeCalculator(int price, int moneyPaid) {
         this.price = price;
@@ -70,33 +69,8 @@ public class ChangeCalculator {
 
         return message;
     }
-    /*
 
-    public StringBuilder printMe() {
-        StringBuilder message = new StringBuilder("");
-        if (getReturnAmount() < 0) {
-            return message.append("Du betalade för lite.");
-        } else if (getReturnAmount() == 0) {
-            return message.append("Du betalade med jämna pengar.");
-        }
-        int numberOfUnits = 1;
-        List<Integer> list = getListOfChange();
-        for (int i = 0; i < list.size(); i++) {
-
-            if (i > 0 && list.get(i) == list.get(i - 1)) {
-                numberOfUnits++;
-            }else {
-                message.append(getEachUnitToString(list.get(i)));
-            }
-            message.append(numberOfUnits);
-            numberOfUnits=1;
-        }
-
-        return message;
-    }
-     */
-
-    private String getEachUnitToString(Integer input) {
+    protected String getEachUnitToString(Integer input) {
         String line = "\nAntal " + input;
         if (input < 20) {
             line += coinSuffix + ": ";
