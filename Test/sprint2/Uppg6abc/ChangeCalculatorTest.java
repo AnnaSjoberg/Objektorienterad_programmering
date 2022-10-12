@@ -1,28 +1,36 @@
-package sprint2.Uppg6a;
+package sprint2.Uppg6abc;
 
 import org.junit.jupiter.api.Test;
 
 public class ChangeCalculatorTest {
-    ChangeCalculator cc = new ChangeCalculator(137,1000);
+    ChangeCalculator cc = new ChangeCalculator(364,10000);
     @Test
     public void calculateReturnMoneyTest() {
 
-        assert (cc.calculateReturnMoney(price, moneyPaid) == 863);
-        assert (cc.calculateReturnMoney(price, moneyPaid) != 500);
+        assert (cc.getReturnAmount() == 9636);
+        assert (cc.getReturnAmount() != 500);
     }
 
     @Test
     public void getListOfChangeTest() {
-        assert (cc.getListOfChange().size()==7);
+        System.out.println(cc.getListOfChange().get(5));
+        assert (cc.getListOfChange().size()==15);
         assert (cc.getListOfChange().size()!=3);
-        assert (cc.getListOfChange().get(0)==500);
-        assert (cc.getListOfChange().get(1)==200);
-        assert (cc.getListOfChange().get(2)==100);
-        assert (cc.getListOfChange().get(3)==50);
-        assert (cc.getListOfChange().get(4)==10);
-        assert (cc.getListOfChange().get(5)==2);
-        assert (cc.getListOfChange().get(6)==1);
+        assert (cc.getListOfChange().get(0)==1000);
+        assert (cc.getListOfChange().get(5)==1000);
+        assert (cc.getListOfChange().get(8)==1000);
+        assert (cc.getListOfChange().get(9)==500);
+        assert (cc.getListOfChange().get(10)==100);
+        assert (cc.getListOfChange().get(11)==20);
+        assert (cc.getListOfChange().get(12)==10);
+        assert (cc.getListOfChange().get(13)==5);
+        assert (cc.getListOfChange().get(14)==1);
         assert (cc.getListOfChange().get(0)!=50);
+    }
+
+    @Test
+    public void getLineToPrintTest(){
+
     }
 }
 

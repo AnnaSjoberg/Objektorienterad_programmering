@@ -1,15 +1,23 @@
-package sprint2.Uppg6a;
+package sprint2.Uppg6abc;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        List<String> test = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+    public Main (){
+        System.out.println("Pris: ");
+        int price = scanner.nextInt();
+        System.out.println("Överlämnad summa: ");
+        int moneyPaid = scanner.nextInt();
+        ChangeCalculator changeCalculator =  new ChangeCalculator(price,moneyPaid);
+        System.out.println(changeCalculator.getReturnAmount());
+        System.out.println(changeCalculator.getListOfChange());
+        System.out.println(changeCalculator.printMe());
+    }
 
-        if (test.size() != 1)
-            test.add("Såhär kan man göra");
-        System.out.println(test.get(0) + " faktiskt");
+    public static void main(String[] args) {
+
+        Main main = new Main();
     }
 }
 /*

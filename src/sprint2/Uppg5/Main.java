@@ -22,6 +22,7 @@ public class Main {
         String indata = showInputDialog("Ange antal dagar, pris per dag samt bilmodell");
         while (true) {
             if (indata == null) {
+                showMessageDialog(null, "Du tryckte på avbryt, programmet avslutas.");
                 System.exit(0);
             }
             Scanner sc = new Scanner(indata);
