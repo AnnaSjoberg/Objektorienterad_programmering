@@ -23,11 +23,7 @@ class FuelCalculatorTest {
     @Test
     public void printMeTest(){
         System.out.println(f.printMe());
-        assertTrue (f.printMe().equals("""
-                Antal körda mil: 3680.0
-                Antal liter bensin: 2345.0
-                Förbrukning per mil: 0.64
-                """));
+        assert (f.printMe()=="Antal körda mil: 3680.0\nAntal liter bensin: 2345.0\nFörbrukning per mil: 0.64\n");
       //  assert (!f.printMe().equals("Jag hamrar och spikar och bygger en bil"));
     }
 }

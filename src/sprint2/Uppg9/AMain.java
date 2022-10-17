@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class AMain {
     public AMain() {
         Path readFrom = Paths.get("src/sprint2/Uppg9/Personuppgifter.txt");
-        Path writeTo = Paths.get("src/sprint2/Uppg9/tallPeople.txt");
+        Path writeTo = Paths.get("src/sprint2/Uppg9/ATallPeople.txt");
 
         try (BufferedReader bReader = Files.newBufferedReader(readFrom);
              BufferedWriter bWriter = Files.newBufferedWriter(writeTo)) {
@@ -46,7 +46,7 @@ public class AMain {
     }
 
     public boolean isOver2Meters(int input) {
-        return input > 200;
+        return input >= 200;
     }
 
     public static void main(String[] args) {
