@@ -29,8 +29,6 @@ public class Member {
         return res;
     }
 
-
-
     protected boolean isCardValid(String date) { //testet skrivet innan metoden
         LocalDate today = LocalDate.now();
         LocalDate oneYearAgo = LocalDate.of(today.getYear() - 1, today.getMonth(), today.getDayOfMonth());
@@ -38,7 +36,7 @@ public class Member {
         return oneYearAgo.isBefore(purchaseDate);
     }
 
-    public boolean isOnMembersList(String input) { //testet skrivet innan kod, går ej igemom än då jag fortfarande inte har skapat en lista att jämföra input med
+    public boolean isOnMembersList(List<PreviousCustomer> allMembers, String input) { //testet skrivet innan kod
         //jämföra lista med samtliga personer och jämföra om input namn eller personnummer matchar
         for (PreviousCustomer member : allMembers) {
             if (input.equals(member.getFullName()) || input.equals(member.getIdNumber())) {

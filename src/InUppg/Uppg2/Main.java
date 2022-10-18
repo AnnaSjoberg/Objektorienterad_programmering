@@ -8,7 +8,7 @@ public class Main {
     public Main() {
         //skapa en lista med alla personer från filen
         //skicka personlistan för att skapa en medlemslista i member?
-        //kunna ta in namn/p-nr och jämföra med medlemslistan
+        //kunna ta in namn/p-nr och jämföra med medlemslistan  <---- Här borde jag också få in något om ifall det är test.
         //skriva träningstillfällena i PT-filen egen klass för PT?? eller räcker det att göra detta här?
 
         String filePath = "src/InUppg/Uppg2/customers.txt";
