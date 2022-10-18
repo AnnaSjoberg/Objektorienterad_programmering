@@ -29,7 +29,7 @@ public class Member {
         return res;
     }
 
-    protected boolean isCardValid(String date) { //testet skrivet innan metoden
+    public boolean isCardValid(String date) { //testet skrivet innan metoden
         LocalDate today = LocalDate.now();
         LocalDate oneYearAgo = LocalDate.of(today.getYear() - 1, today.getMonth(), today.getDayOfMonth());
         LocalDate purchaseDate = LocalDate.parse(date);

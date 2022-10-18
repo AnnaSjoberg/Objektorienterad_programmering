@@ -1,21 +1,28 @@
-package InUppg.Uppg2;
+package InUppg.Uppg22;
 
-import java.util.ArrayList;
+import javax.swing.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
 
     public Main() {
-        //skapa en lista med alla personer från filen
-        //skicka personlistan för att skapa en medlemslista i member?
-        //kunna ta in namn/p-nr och jämföra med medlemslistan  <---- Här borde jag också få in något om ifall det är test.
-        //skriva träningstillfällena i PT-filen egen klass för PT?? eller räcker det att göra detta här?
-        boolean isTest = false;
-        String filePath = "src/InUppg/Uppg2/customers.txt";
-        List<PreviousCustomer> fileIntoList = IOHandling.listFromFile(filePath);
-       // List<PreviousCustomer> membersList = Member.ceateAllMembersList(fileIntoList);
+        String originalFile = "src/InUppg/Uppg22/customers.txt";
+        String ptTrackingFile = "src/InUppg/Uppg22/ptTrackingFile.txt";
+        List<Customer> fileIntoList = IOHandling.listFromFile(originalFile);
 
-        RegistrationDesk registrationDesk = new RegistrationDesk(fileIntoList,isTest);
+        String visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:").trim();
+
+        for (Customer element:fileIntoList) { //ger utskrifter för (enbart) nuvarande och föredetta medlemmar. Skriver till fil
+            if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)){
+                if (element.isActiveMember()){
+                    JOptionPane.showMessageDialog(null, "Giltigt årskort. Välkommen!");
+                    IOHandling.writeToFile(ptTrackingFile,element, LocalDate.now().toString());
+                }else {
+                    JOptionPane.showMessageDialog(null, "Årskortet har gått ut. Gammal medlem");
+                }
+            }
+        }
 
 
     }
