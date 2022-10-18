@@ -6,7 +6,6 @@ public class Customer {
     private String idNumber;
     private String fullName;
     private String purchaseDate;
-  //  private boolean activeMember;
 
     public Customer(String IDnumber, String fullName, String purchaseDate) {
         this.idNumber = IDnumber;

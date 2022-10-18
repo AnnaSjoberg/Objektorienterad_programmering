@@ -12,7 +12,9 @@ public class Main {
         List<Customer> fileIntoList = IOHandling.listFromFile(originalFile);
 
         String visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:").trim();
-
+        Comparator comparator = new Comparator();
+        comparator.compareVisitor(fileIntoList,visitorInput);
+        /*
         for (Customer element:fileIntoList) { //ger utskrifter för (enbart) nuvarande och föredetta medlemmar. Skriver till fil
             if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)){
                 if (element.isActiveMember()){
@@ -23,6 +25,8 @@ public class Main {
                 }
             }
         }
+
+         */
 
 
     }
