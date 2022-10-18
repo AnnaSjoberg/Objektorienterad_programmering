@@ -1,6 +1,26 @@
 package InUppg.Uppg2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
+
+    public Main() {
+        //skapa en lista med alla personer från filen
+        //skicka personlistan för att skapa en medlemslista i member?
+        //kunna ta in namn/p-nr och jämföra med medlemslistan
+        //skriva träningstillfällena i PT-filen egen klass för PT?? eller räcker det att göra detta här?
+
+        String filePath = "src/InUppg/Uppg2/customers.txt";
+        List<PreviousCustomer> fileIntoList = IOHandling.listFromFile(filePath);
+        List<PreviousCustomer> membersList = Member.ceateAllMembersList(fileIntoList);
+
+
+    }
+
+    public static void main(String[] args) {
+        Main main = new Main();
+    }
 }
 
 /*

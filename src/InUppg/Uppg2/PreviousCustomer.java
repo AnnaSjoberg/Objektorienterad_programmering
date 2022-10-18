@@ -1,11 +1,12 @@
 package InUppg.Uppg2;
 
-public class Person {
+public class PreviousCustomer {
     private String idNumber;
     private String fullName;
     private String purchaseDate;
 
-    public Person(String idNumber, String fullName, String purchaseDate) {
+
+    public PreviousCustomer(String idNumber, String fullName, String purchaseDate) {
         this.idNumber = idNumber;
         this.fullName = fullName;
         this.purchaseDate = purchaseDate;
