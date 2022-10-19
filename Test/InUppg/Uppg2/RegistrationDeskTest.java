@@ -8,26 +8,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RegistrationDeskTest {
     boolean testRun = true;
-    List<Customer> fileIntoList = IOHandling.listFromFile("Test/InUppg/Uppg2/testFileRead.txt");
+    String originalFile = "Test/InUppg/Uppg2/testFileRead.txt";
     String fileToWriteTo = "Test/InUppg/Uppg2/testFileWrite.txt";
-    RegistrationDesk regDesk = new RegistrationDesk(fileToWriteTo, testRun);
+    RegistrationDesk regDesk = new RegistrationDesk(testRun, originalFile, fileToWriteTo);
 
     @Test
-    void registerVisitor() { //Kod före test
+    void registerVisitorTest() { //Kod före test
         String currentMemberName = "Lena Sjö";
         String currentMemberID = "6203051234";
         String oldMemberName = "Emma Ove";
         String oldMemberID = "8505205678";
         String notMemberName = "Bertil Fil";
-        regDesk.registerVisitor(fileIntoList, currentMemberName);
+        regDesk.registerVisitor(currentMemberName);
         assertTrue(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
-        regDesk.registerVisitor(fileIntoList, currentMemberID);
+        regDesk.registerVisitor(currentMemberID);
         assertTrue(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
-        regDesk.registerVisitor(fileIntoList, oldMemberName);
+        regDesk.registerVisitor(oldMemberName);
         assertTrue(regDesk.getMockOutput().equals("Årskortet har gått ut. Före detta medlem."));
-        regDesk.registerVisitor(fileIntoList, oldMemberID);
+        regDesk.registerVisitor(oldMemberID);
         assertTrue(regDesk.getMockOutput().equals("Årskortet har gått ut. Före detta medlem."));
-        regDesk.registerVisitor(fileIntoList, notMemberName);
+        regDesk.registerVisitor(notMemberName);
         assertTrue(regDesk.getMockOutput().equals("Personen återfinns inte på listan."));
         assertFalse(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
 

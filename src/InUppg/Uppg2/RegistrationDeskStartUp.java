@@ -2,25 +2,24 @@ package InUppg.Uppg2;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-public class RegistrationDesk {
-    private boolean testRun;
+public class RegistrationDeskStartUp {
     private final String originalFile;
     private final String ptTrackingFile;
-    private List<Customer> fileIntoList = new ArrayList<>();
-    private String mockOutput;
+    private boolean testRun;
     private String visitorInput;
+    private String mockOutput;
+    private List<Customer> fileIntoList;
 
-    public RegistrationDesk(boolean testRun, String originalFile, String ptTrackingFile) {
+    public RegistrationDeskStartUp(boolean testRun, String orirginalFile, String ptTrackingFile) {
         this.testRun = testRun;
-        this.originalFile = originalFile;
+        this.originalFile = orirginalFile;
         this.ptTrackingFile = ptTrackingFile;
-        this.fileIntoList = IOHandling.listFromFile(this.originalFile);
-        //this.fileIntoList=fileIntoList;
+        List<Customer> fileIntoList = IOHandling.listFromFile(this.originalFile);
+
         if (!this.testRun) {
-            int option = JOptionPane.showConfirmDialog(null, "Datafilen har förts över till en lista. \n" +
+            int option = JOptionPane.showConfirmDialog(null, "Listan har skapats. \n" +
                     "Vill du fortsätta med att registrera gäster?", "Start up complete", JOptionPane.YES_NO_OPTION);
             if (option != 0) {
                 JOptionPane.showMessageDialog(null, "Programmet avslutas");
@@ -29,29 +28,35 @@ public class RegistrationDesk {
         }
     }
 
-    public boolean isTestRun() {
-        return testRun;
-    }
+    /*
 
-    public String getOriginalFile() {
-        return originalFile;
+    public RegistrationDeskStartUp(boolean testRun) {
+        this.testRun = testRun;
+        if(!this.testRun){
+            String originalFile = "src/InUppg/Uppg2/customers.txt";
+            this.ptTrackingFile = "src/InUppg/Uppg2/ptTrackingFile.txt";
+            List<Customer> fileIntoList = IOHandling.listFromFile(originalFile);
+
+        }
     }
+     */
+
 
     public String getPtTrackingFile() {
         return ptTrackingFile;
     }
 
-    public List<Customer> getFileIntoList() {
-        return fileIntoList;
+    public boolean isTestRun() {
+        return testRun;
+    }
+
+    public String getVisitorInput() {
+        return visitorInput;
     }
 
     public String getMockOutput() {
         return mockOutput;
     }//för att kunna testa output som annars skulle gått till dialogruta
-
-    public String getVisitorInput() {
-        return visitorInput;
-    }
 
     public void setVisitorInput(String testInput) {
         if (testRun) {
@@ -68,10 +73,10 @@ public class RegistrationDesk {
         }
     }
 
-    public void registerVisitor(String testInput) {
+    public void registerVisitor(List<Customer> customerList, String testInput) {
         setVisitorInput(testInput);
         String res = "Personen återfinns inte på listan.";
-        for (Customer element : getFileIntoList()) {
+        for (Customer element : customerList) {
             if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput)
                     || element.getFullName().equals(visitorInput))) {
                 res = "Giltigt årskort. Välkommen!";
