@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,15 +42,17 @@ public class IOHandlingTest {
         String testDay2 = "2022-09-21";
         String testDay3 = "2022-10-05";
         Customer p1 = new Customer("6203051234", "Lena Sjö", "2202-01-31");
-        int linesInFile = countLinesInFile(testWritePath);
+
 
         obj.writeToFile(testWritePath, p1, testDay1);
         obj.writeToFile(testWritePath, p1, testDay2);
         obj.writeToFile(testWritePath, p1, testDay3);
 
-        assertTrue(countLinesInFile(testWritePath) == (linesInFile+3));
+        assertTrue(countLinesInFile(testWritePath) == 3);
         assertFalse(countLinesInFile(testWritePath) == 0);
 
+        //lägga till en scanner och undersöka om texten som hamnat i filen är korrekt
+        //får inte till detta än så länge. återkommer om tid finns. Annars nöjer jag mig med att räkna rader
     }
 
     public final int countLinesInFile(String fileToCount) {

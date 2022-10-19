@@ -8,6 +8,7 @@ public class RegistrationDesk {
     private final String ptTrackingFile;
     private boolean testRun;
     private String visitorInput;
+    private String mockOutput;
 
 
     public RegistrationDesk(String ptTrackingFile, boolean testRun) {
@@ -27,7 +28,7 @@ public class RegistrationDesk {
         return visitorInput;
     }
 
-    public void setVisitorInput(boolean testRun, String testInput) {
+    public void setVisitorInput(String testInput) {
         if (testRun) { //måste hitta ett sätt att ange strängen när det är test
             this.visitorInput=testInput;
         } else {
@@ -40,7 +41,7 @@ public class RegistrationDesk {
     }
 
     public void registerVisitor(List<Customer> customerList, String testInput) {
-        setVisitorInput(testRun, testInput);
+        setVisitorInput(testInput);
         String res = "Personen återfinns inte på listan.";
         for (Customer element : customerList) {
             if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput.trim())
@@ -48,9 +49,17 @@ public class RegistrationDesk {
                 res = "Giltigt årskort. Välkommen!";
                 IOHandling.writeToFile(ptTrackingFile, element, LocalDate.now().toString());
             } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
-                res = "Årskortet har gått ut. Före detta medlem";
+                res = "Årskortet har gått ut. Före detta medlem.";
             }
         }
-        JOptionPane.showMessageDialog(null, res);
+        if (testRun) {
+            this.mockOutput=res;
+        }else{
+            JOptionPane.showMessageDialog(null, res);
+        }
+    }
+
+    public String getMockOutput() {
+        return mockOutput;
     }
 }
