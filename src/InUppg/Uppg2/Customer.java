@@ -1,4 +1,4 @@
-package InUppg.Uppg22;
+package InUppg.Uppg2;
 
 import java.time.LocalDate;
 

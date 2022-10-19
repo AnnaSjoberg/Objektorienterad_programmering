@@ -1,63 +1,68 @@
 package InUppg.Uppg2;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.time.LocalDate;
 import java.util.List;
 
-public class RegistrationDesk { //klass för interaktion via dialogruta
-    //List<PreviousCustomer> membersList = Member.ceateAllMembersList(fileIntoList);
-    private List<PreviousCustomer> previousCustomerList;
-    private boolean isTest;
+public class RegistrationDesk {
+    private final String ptTrackingFile;
+    private boolean testRun;
+    private String visitorInput;
+    private String mockOutput;
 
-    public RegistrationDesk(List<PreviousCustomer> previousCustomerList, boolean isTest) {
-        this.previousCustomerList = previousCustomerList;
-        this.isTest = isTest;
+
+    public RegistrationDesk(String ptTrackingFile, boolean testRun) {
+        this.ptTrackingFile = ptTrackingFile;
+        this.testRun = testRun;
     }
 
-    public List<PreviousCustomer> getPreviousCustomerList() {
-        return previousCustomerList;
+    public String getPtTrackingFile() {
+        return ptTrackingFile;
     }
 
-    public boolean getIsTest() {
-        return isTest;
+    public boolean isTestRun() {
+        return testRun;
     }
 
-    public String registerVisitor(boolean isTest, String testInput) {
-        if (isTest) {
-            return testInput;
+    public String getVisitorInput() {
+        return visitorInput;
+    }
+
+    public String getMockOutput() {
+        return mockOutput;
+    }//för att kunna testa output som annars skulle gått till dialogruta
+
+    public void setVisitorInput(String testInput) {
+        if (testRun) {
+            this.visitorInput = testInput.trim();
         } else {
-            return JOptionPane.showInputDialog("Ange namn eller personnummer: ").trim();
-        }
-    }
-
-
-
-    public String printMe (String visitorInput){
-        String res="";
-        for (PreviousCustomer temp:previousCustomerList) {
-            if (temp.getFullName().equals(visitorInput)||temp.getIdNumber().equals(visitorInput)){
-              //  if()
-
-            }else {
-                res="Icke medlem";
+            visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:");
+            if (visitorInput == null) {
+                JOptionPane.showMessageDialog(null, "Programmet avslutas. " +
+                        "\nAlla träningspass har registrerats i ptTrackingFile.");
+                System.exit(0);
+            } else {
+                this.visitorInput = visitorInput.trim();
             }
         }
-
-
-        return null;
     }
 
-
-
-
-  /*  public boolean isOnMembersList(List<PreviousCustomer> allMembers, String input) { //testet skrivet innan kod
-        //jämföra lista med samtliga personer och jämföra om input namn eller personnummer matchar
-        for (PreviousCustomer member : allMembers) {
-            if (input.equals(member.getFullName()) || input.equals(member.getIdNumber())) {
-                return true;
+    public void registerVisitor(List<Customer> customerList, String testInput) {
+        setVisitorInput(testInput);
+        String res = "Personen återfinns inte på listan.";
+        for (Customer element : customerList) {
+            if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput)
+                    || element.getFullName().equals(visitorInput))) {
+                res = "Giltigt årskort. Välkommen!";
+                IOHandling.writeToFile(ptTrackingFile, element, LocalDate.now().toString());
+            } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
+                res = "Årskortet har gått ut. Före detta medlem.";
             }
         }
-        return false;
+        if (testRun) {
+            this.mockOutput = res;
+        } else {
+            JOptionPane.showMessageDialog(null, res);
+        }
     }
-
-   */
 }

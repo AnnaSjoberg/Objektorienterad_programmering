@@ -4,32 +4,32 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RegistrationDeskTest {
-    boolean isTest = true;
-    List<PreviousCustomer> testFullList = IOHandling.listFromFile("Test/InUppg/Uppg2/testFileRead.txt");
-  //  List<PreviousCustomer> testMembersList = Member.ceateAllMembersList(testFullList);
-    RegistrationDesk registrationDesk = new RegistrationDesk(testFullList, isTest);
-
-
-    @Test
-    public void registerVisitorTest(){ //test skrivet före kod
-        String testInput = "test";
-        assert (registrationDesk.registerVisitor(isTest, testInput).equals(testInput));
-        assert (!registrationDesk.registerVisitor(isTest, testInput).equals("Något annat"));
-    }
+class RegistrationDeskTest {
+    boolean testRun = true;
+    List<Customer> fileIntoList = IOHandling.listFromFile("Test/InUppg/Uppg2/testFileRead.txt");
+    String fileToWriteTo = "Test/InUppg/Uppg2/testFileWrite.txt";
+    RegistrationDesk regDesk = new RegistrationDesk(fileToWriteTo, testRun);
 
     @Test
-    public void printMeTest (){
-        //undersöka om inmatningen återfinns på membersList eller fileIntoList. returnera string med information
-        String testValidMember = "Anna Magdal";
-        String testExpiredMember= "Erik Gunnarsson";
-        String testNotMember="Påskharen";
-        assertTrue (registrationDesk.printMe(testValidMember).equals("Giltig medlem"));
-        assertTrue (registrationDesk.printMe(testExpiredMember).equals("Tidigare medlem"));
-        assertTrue (registrationDesk.printMe(testNotMember).equals("Icke medlem"));
+    void registerVisitor() { //Kod före test
+        String currentMemberName = "Lena Sjö";
+        String currentMemberID = "6203051234";
+        String oldMemberName = "Emma Ove";
+        String oldMemberID = "8505205678";
+        String notMemberName = "Bertil Fil";
+        regDesk.registerVisitor(fileIntoList, currentMemberName);
+        assertTrue(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
+        regDesk.registerVisitor(fileIntoList, currentMemberID);
+        assertTrue(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
+        regDesk.registerVisitor(fileIntoList, oldMemberName);
+        assertTrue(regDesk.getMockOutput().equals("Årskortet har gått ut. Före detta medlem."));
+        regDesk.registerVisitor(fileIntoList, oldMemberID);
+        assertTrue(regDesk.getMockOutput().equals("Årskortet har gått ut. Före detta medlem."));
+        regDesk.registerVisitor(fileIntoList, notMemberName);
+        assertTrue(regDesk.getMockOutput().equals("Personen återfinns inte på listan."));
+        assertFalse(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
+
     }
-
-
 }
