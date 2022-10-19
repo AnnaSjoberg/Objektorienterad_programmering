@@ -7,13 +7,17 @@ import java.util.List;
 public class Main {
 
     public Main() {
+        boolean testRun = false;
         String originalFile = "src/InUppg/Uppg22/customers.txt";
         String ptTrackingFile = "src/InUppg/Uppg22/ptTrackingFile.txt"; //kan tas bort ifall jag bestämmer mig för att använda klassen Comparator som RegistrationDesk och sköter utskrifter i dialog och fil där
         List<Customer> fileIntoList = IOHandling.listFromFile(originalFile);
-
-        String visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:").trim();
-        Comparator comparator = new Comparator();
-        comparator.compareVisitor(fileIntoList,visitorInput); //Detta ger utskrift i dialogruta för medlemsskap. ger dock ingen registrering i PTtracking
+        RegistrationDesk registrationDesk = new RegistrationDesk(ptTrackingFile,testRun);
+        while (true) {
+            registrationDesk.compareVisitor(fileIntoList);
+        }//kommer fortsätta tills användaren trycker på avbryt i dialogrutan
+//        String visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:").trim();
+  //      Comparator comparator = new Comparator();
+    //    comparator.compareVisitor(fileIntoList, visitorInput); //Detta ger utskrift i dialogruta för medlemsskap. ger dock ingen registrering i PTtracking
 
         /*
         for (Customer element:fileIntoList) { //ger utskrifter för (enbart) nuvarande och föredetta medlemmar. Skriver till fil

@@ -1,0 +1,57 @@
+package InUppg.Uppg22;
+
+import javax.swing.*;
+import java.time.LocalDate;
+import java.util.List;
+
+public class RegistrationDesk {
+    private final String ptTrackingFile;
+    private boolean testRun;
+    private String visitorInput;
+
+
+    public RegistrationDesk(String ptTrackingFile, boolean testRun) {
+        this.ptTrackingFile = ptTrackingFile;
+        this.testRun = testRun;
+
+
+    }
+
+    public String getPtTrackingFile() {
+        return ptTrackingFile;
+    }
+
+    public boolean isTestRun() {
+        return testRun;
+    }
+
+    public String getVisitorInput() {
+        return visitorInput;
+    }
+
+    public void setVisitorInput(boolean testRun) {
+        if (testRun) {
+        } else {
+            this.visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:");
+            if (this.visitorInput == null) {
+                JOptionPane.showMessageDialog(null,"Programmet avslutas.");
+                System.exit(0);
+            }
+        }
+    }
+
+    public void compareVisitor(List<Customer> customerList) {
+        setVisitorInput(testRun);
+        String res = "Personen återfinns inte på listan.";
+        for (Customer element : customerList) {
+            if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput.trim()) || element.getFullName().equals(visitorInput.trim()))) {
+                res = "Giltigt årskort. Välkommen!";
+
+                IOHandling.writeToFile(ptTrackingFile, element, LocalDate.now().toString());
+            } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
+                res = "Årskortet har gått ut. Före detta medlem";
+            }
+        }
+        JOptionPane.showMessageDialog(null, res);
+    }
+}
