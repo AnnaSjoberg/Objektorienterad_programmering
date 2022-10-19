@@ -29,12 +29,13 @@ public class RegistrationDesk {
     }
 
     public void setVisitorInput(String testInput) {
-        if (testRun) { //måste hitta ett sätt att ange strängen när det är test
-            this.visitorInput=testInput;
+        if (testRun) {
+            this.visitorInput = testInput;
         } else {
             this.visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:");
             if (this.visitorInput == null) {
-                JOptionPane.showMessageDialog(null, "Programmet avslutas.");
+                JOptionPane.showMessageDialog(null, "Programmet avslutas. " +
+                        "\nAlla träningspass har registrerats i ptTrackingFile.");
                 System.exit(0);
             }
         }
@@ -53,8 +54,8 @@ public class RegistrationDesk {
             }
         }
         if (testRun) {
-            this.mockOutput=res;
-        }else{
+            this.mockOutput = res;
+        } else {
             JOptionPane.showMessageDialog(null, res);
         }
     }

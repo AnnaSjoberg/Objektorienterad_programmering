@@ -27,8 +27,8 @@ public class Customer {
 
     public boolean isActiveMember() {
         LocalDate today = LocalDate.now();
+        LocalDate oneYearAgo = LocalDate.of((today.getYear() - 1), today.getMonth(), today.getDayOfMonth());
         LocalDate dateOfPurchase = LocalDate.parse(getPurchaseDate());
-        return (dateOfPurchase.isAfter(LocalDate.of((today.getYear()-1), today.getMonth(), today.getDayOfMonth())));
+        return (dateOfPurchase.isAfter(oneYearAgo));
     }
-
 }
