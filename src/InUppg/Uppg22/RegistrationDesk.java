@@ -13,8 +13,6 @@ public class RegistrationDesk {
     public RegistrationDesk(String ptTrackingFile, boolean testRun) {
         this.ptTrackingFile = ptTrackingFile;
         this.testRun = testRun;
-
-
     }
 
     public String getPtTrackingFile() {
@@ -29,24 +27,25 @@ public class RegistrationDesk {
         return visitorInput;
     }
 
-    public void setVisitorInput(boolean testRun) {
-        if (testRun) {
+    public void setVisitorInput(boolean testRun, String testInput) {
+        if (testRun) { //måste hitta ett sätt att ange strängen när det är test
+            this.visitorInput=testInput;
         } else {
             this.visitorInput = JOptionPane.showInputDialog("Ange namn eller personnummer:");
             if (this.visitorInput == null) {
-                JOptionPane.showMessageDialog(null,"Programmet avslutas.");
+                JOptionPane.showMessageDialog(null, "Programmet avslutas.");
                 System.exit(0);
             }
         }
     }
 
-    public void compareVisitor(List<Customer> customerList) {
-        setVisitorInput(testRun);
+    public void registerVisitor(List<Customer> customerList, String testInput) {
+        setVisitorInput(testRun, testInput);
         String res = "Personen återfinns inte på listan.";
         for (Customer element : customerList) {
-            if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput.trim()) || element.getFullName().equals(visitorInput.trim()))) {
+            if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput.trim())
+                    || element.getFullName().equals(visitorInput.trim()))) {
                 res = "Giltigt årskort. Välkommen!";
-
                 IOHandling.writeToFile(ptTrackingFile, element, LocalDate.now().toString());
             } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
                 res = "Årskortet har gått ut. Före detta medlem";

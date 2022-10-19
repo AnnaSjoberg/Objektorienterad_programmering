@@ -1,19 +1,30 @@
-package InUppg.Uppg2;
+package InUppg.Uppg22;
 
+
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IOHandlingTest {
 
-    IOHandling obj = new IOHandling();
-    String testReadPath = "Test/InUppg/Uppg2/testFileRead.txt";
-    String testWritePath = "Test/InUppg/Uppg2/testFileWrite.txt";
 
+    IOHandling obj = new IOHandling();
+    String testReadPath = "Test/InUppg/Uppg22/testFileRead.txt";
+    String testWritePath = "Test/InUppg/Uppg22/testFileWrite.txt";
+
+    @BeforeAll
+    static void beforeAll() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter("Test/InUppg/Uppg22/testFileWrite.txt"))){
+            pw.flush();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     @Test
     public void readFromFileTest() { //skrivit metoden innan testet
         assert (obj.listFromFile(testReadPath).size() == 5);
@@ -29,7 +40,7 @@ public class IOHandlingTest {
         String testDay1 = "2022-09-17";
         String testDay2 = "2022-09-21";
         String testDay3 = "2022-10-05";
-        PreviousCustomer p1 = new PreviousCustomer("6203051234", "Lena Sjö", "2202-01-31");
+        Customer p1 = new Customer("6203051234", "Lena Sjö", "2202-01-31");
         int linesInFile = countLinesInFile(testWritePath);
 
         obj.writeToFile(testWritePath, p1, testDay1);
