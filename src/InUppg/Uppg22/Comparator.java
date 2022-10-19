@@ -1,25 +1,29 @@
 package InUppg.Uppg22;
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Comparator implements Printable {
-
+// borde fungera att ta bort interface och antingen ha kvar metoden printMe eller flytta in utskriften i compareVisitor.
+// om jag flyttar ihop borde det också kunna fungera bättre med att också regga till ptTracking
+// Kanske byta namn på klassen till RegistrationDesk?
+String ptTrackingFile = "src/InUppg/Uppg22/ptTrackingFile.txt";// bättre att jag lägger Path som variabel till klassen?
     public void compareVisitor(List<Customer> customerList, String visitorInput) {
-        String res = "";
+        String res = "Inte medlem";
         for (Customer element : customerList) {
             if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput))) {
                 res = "Giltigt årskort. Välkommen!";
+
+                IOHandling.writeToFile(ptTrackingFile,element, LocalDate.now().toString());//om jag  bestämmer mig för att ha utskriften till fil här
                 break;
             } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
                 res = "Årskortet har gått ut. Gammal medlem";
                 break;
-            }else {
-                res = "Inte medlem";
             }
         }
-        printMessage(res);
-        return;
+        JOptionPane.showMessageDialog(null,res); //om jag tar bort printMessage
+        printMessage(res); //ifall jag behåller interface eller separat metod för att göra utskrift
     }
 
     /*
@@ -36,7 +40,7 @@ public class Comparator implements Printable {
      */
 
     @Override
-    public void printMessage(String message) {
+    public void printMessage(String message) { //får ligga kvar så länge jag ändå behåller interface. men ska förmodligen städas bort sen
         JOptionPane.showMessageDialog(null, message);
     }
 }
