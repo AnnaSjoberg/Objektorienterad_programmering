@@ -1,7 +1,5 @@
 package InUppg.Uppg2;
 
-import java.util.List;
-
 public class Main {
 
     public Main() {
@@ -15,7 +13,6 @@ public class Main {
             registrationDesk.registerVisitor(null);
         }
     }
-
     public static void main(String[] args) {
         Main main = new Main();
     }

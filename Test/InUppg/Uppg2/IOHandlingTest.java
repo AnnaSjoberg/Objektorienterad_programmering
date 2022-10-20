@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IOHandlingTest {
 
-
     IOHandling obj = new IOHandling();
     String testReadPath = "Test/InUppg/Uppg2/testFileRead.txt";
     String testWritePath = "Test/InUppg/Uppg2/testFileWrite.txt";
@@ -74,6 +73,7 @@ public class IOHandlingTest {
         }
         return res;
     }
+
     public final int countLinesInFile(String fileToCount) { //Kod före test
         int lines = 0;
         try (BufferedReader reader = new BufferedReader(

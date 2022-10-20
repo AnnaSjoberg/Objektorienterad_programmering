@@ -25,7 +25,8 @@ public class IOHandling {
                 firstLine = readScanner.nextLine();
                 splitFirstLine = firstLine.split(",");
                 secondLine = readScanner.nextLine();
-                Customer tempCustomer = new Customer(splitFirstLine[0].trim(), splitFirstLine[1].trim(), secondLine.trim());
+                Customer tempCustomer = new Customer(splitFirstLine[0].trim(), splitFirstLine[1].trim(),
+                                                        secondLine.trim());
                 entriesFromFile.add(tempCustomer);
             }
 
