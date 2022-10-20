@@ -9,7 +9,7 @@ public class RegistrationDesk {
     private boolean testRun;
     private final String originalFile;
     private final String ptTrackingFile;
-    private List<Customer> fileIntoList = new ArrayList<>();
+    private List<Customer> fileIntoList;
     private String mockOutput;
     private String visitorInput;
 
