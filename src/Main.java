@@ -1,19 +1,42 @@
-import javax.swing.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.List;
+/*
 
-public class Main {
-    public static void main(String[] args) {
-        Date date = new Date();
-        DateFormat df = new SimpleDateFormat("HH:mm:ss z");
-        df.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-        String s = df.format(date);
-        System.out.println(s);
+public class ÖvnUppg12_serialisering {
+
+    public void printList(List<Fordon> fordon){
+        fordon.forEach(f -> f.printMe());
+    }
+
+
+    ÖvnUppg12_serialisering(){
+        SerializationManager sm = new SerializationManager();
+
+        Tåg tåg = new Tåg(180, 300000, 5);
+        Bil bil = new Bil(200, 1000, 70);
+        Båt båt = new Båt(50, 300, 50);
+        Cykel cykel = new Cykel(50, 5, 10);
+
+        List <Fordon> fordonsLista = new ArrayList<>();
+        fordonsLista.add(tåg);
+        fordonsLista.add(bil);
+        fordonsLista.add(båt);
+        fordonsLista.add(cykel);
+
+        sm.serializeList(fordonsLista,
+                "src/ÖvnUppg12_serialisering/minaFordon.ser");
+
+        List<Fordon> f = sm.deSerializeList();
+        printList(f);
+
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+/*    public static void main(String[] args) {
+        ÖvnUppg12_serialisering övn11 = new ÖvnUppg12_serialisering();
     }
 
 }
+*/
