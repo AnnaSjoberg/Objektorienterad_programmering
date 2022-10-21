@@ -38,7 +38,8 @@ public class IOHandlingTest {
 
     @Test
     public void WriteToFileTest() {//testen påbörjde innan övrig kod (gått fram och tillbaka innan grönt)
-        // Test för kontroll av filens innhåll skrivet efter kod
+                                   // Test för kontroll av filens innhåll skrivet efter kod
+
         String testDay1 = "2022-09-17";
         String testDay2 = "2022-09-21";
         String testDay3 = "2022-10-05";
@@ -60,7 +61,7 @@ public class IOHandlingTest {
 
     }
 
-    public String fileReader(String fileName) {
+    public String fileReader(String fileName) { //kod före test
         String res = "";
         try (Scanner scanner = new Scanner(new File(fileName))) {
 

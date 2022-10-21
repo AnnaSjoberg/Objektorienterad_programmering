@@ -10,8 +10,8 @@ public class RegistrationDesk {
     private final String originalFile;
     private final String ptTrackingFile;
     private List<Customer> fileIntoList;
-    private String mockOutput;
     private String visitorInput;
+    private String mockOutput;//för att kunna testa output som annars skulle gått till dialogruta
 
     public RegistrationDesk(boolean testRun, String originalFile, String ptTrackingFile) {
         this.testRun = testRun;
@@ -45,13 +45,10 @@ public class RegistrationDesk {
         return fileIntoList;
     }
 
-    public String getMockOutput() {
-        return mockOutput;
-    }//för att kunna testa output som annars skulle gått till dialogruta
-
     public String getVisitorInput() {
         return visitorInput;
     }
+
 
     public void setVisitorInput(String testInput) {
         if (testRun) {
@@ -86,4 +83,9 @@ public class RegistrationDesk {
             JOptionPane.showMessageDialog(null, res);
         }
     }
+
+    public String getMockOutput() {
+        return mockOutput;
+    }
+
 }

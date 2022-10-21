@@ -19,16 +19,20 @@ class RegistrationDeskTest {
         String oldMemberName = "Emma Ove";
         String oldMemberID = "8505205678";
         String notMemberName = "Bertil Fil";
+
         regDesk.registerVisitor(currentMemberName);
         assertTrue(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
         regDesk.registerVisitor(currentMemberID);
         assertTrue(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
+
         regDesk.registerVisitor(oldMemberName);
         assertTrue(regDesk.getMockOutput().equals("Årskortet har gått ut. Före detta medlem."));
         regDesk.registerVisitor(oldMemberID);
         assertTrue(regDesk.getMockOutput().equals("Årskortet har gått ut. Före detta medlem."));
+
         regDesk.registerVisitor(notMemberName);
         assertTrue(regDesk.getMockOutput().equals("Personen återfinns inte på listan."));
+
         assertFalse(regDesk.getMockOutput().equals("Giltigt årskort. Välkommen!"));
 
     }
