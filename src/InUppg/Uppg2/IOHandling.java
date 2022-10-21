@@ -20,7 +20,7 @@ public class IOHandling {
         List<Customer> entriesFromFile = new ArrayList<>();
         String[] splitFirstLine;
 
-        try (Scanner readScanner = new Scanner(inputFilePath)) {
+        try (Scanner readScanner = new Scanner(inputFilePath)) {  //try w resources
             while (readScanner.hasNext()) {
                 firstLine = readScanner.nextLine();
                 splitFirstLine = firstLine.split(",");
@@ -38,7 +38,7 @@ public class IOHandling {
 
     public static void writeToFile(String fileName, Customer customer, String date) {
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {        //try w resources
             String temp = customer.getIdNumber() + ", " + customer.getFullName() + "\t\t" + date + "\n";
             writer.append(temp);
         } catch (FileNotFoundException e) {

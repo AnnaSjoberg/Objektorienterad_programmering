@@ -18,7 +18,7 @@ public class RegistrationDesk {
         this.originalFile = originalFile;
         this.ptTrackingFile = ptTrackingFile;
         this.fileIntoList = IOHandling.listFromFile(this.originalFile);
-        //this.fileIntoList=fileIntoList;
+
         if (!this.testRun) {
             int option = JOptionPane.showConfirmDialog(null, "Datafilen har förts över till en lista. \n" +
                     "Vill du fortsätta med att registrera gäster?", "Start up complete", JOptionPane.YES_NO_OPTION);
@@ -49,6 +49,28 @@ public class RegistrationDesk {
         return visitorInput;
     }
 
+    public String getMockOutput() {
+        return mockOutput;
+    }
+
+    public void registerVisitor(String testInput) {
+        setVisitorInput(testInput);
+        String res = "Personen återfinns inte på listan.";
+        for (Customer element : getFileIntoList()) {
+            if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput)
+                    || element.getFullName().equals(visitorInput))) {
+                res = "Giltigt årskort. Välkommen!";
+                IOHandling.writeToFile(ptTrackingFile, element, LocalDate.now().toString());    //registrerar träningspass i fil
+            } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
+                res = "Årskortet har gått ut. Före detta medlem.";
+            }
+        }
+        if (testRun) {
+            this.mockOutput = res;
+        } else {
+            JOptionPane.showMessageDialog(null, res);
+        }
+    }
 
     public void setVisitorInput(String testInput) {
         if (testRun) {
@@ -64,28 +86,4 @@ public class RegistrationDesk {
             }
         }
     }
-
-    public void registerVisitor(String testInput) {
-        setVisitorInput(testInput);
-        String res = "Personen återfinns inte på listan.";
-        for (Customer element : getFileIntoList()) {
-            if (element.isActiveMember() && (element.getIdNumber().equals(visitorInput)
-                    || element.getFullName().equals(visitorInput))) {
-                res = "Giltigt årskort. Välkommen!";
-                IOHandling.writeToFile(ptTrackingFile, element, LocalDate.now().toString());
-            } else if (element.getIdNumber().equals(visitorInput) || element.getFullName().equals(visitorInput)) {
-                res = "Årskortet har gått ut. Före detta medlem.";
-            }
-        }
-        if (testRun) {
-            this.mockOutput = res;
-        } else {
-            JOptionPane.showMessageDialog(null, res);
-        }
-    }
-
-    public String getMockOutput() {
-        return mockOutput;
-    }
-
 }

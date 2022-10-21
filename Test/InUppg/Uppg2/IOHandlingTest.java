@@ -38,7 +38,7 @@ public class IOHandlingTest {
 
     @Test
     public void WriteToFileTest() {//testen påbörjde innan övrig kod (gått fram och tillbaka innan grönt)
-                                   // Test för kontroll av filens innhåll skrivet efter kod
+        // Test för kontroll av filens innhåll skrivet efter kod
 
         String testDay1 = "2022-09-17";
         String testDay2 = "2022-09-21";
@@ -49,7 +49,7 @@ public class IOHandlingTest {
         obj.writeToFile(testWritePath, p1, testDay2);
         obj.writeToFile(testWritePath, p1, testDay3);
 
-        String fileContent = fileReader(testWritePath);
+        String fileContent = fileReader(testWritePath); //metod nedan för att läsa in filen jag skrivit och undersöka innehållet
         assertTrue(fileContent.startsWith(p1.getIdNumber()));
         assertTrue(fileContent.contains(p1.getFullName()));
         assertTrue(fileContent.contains(testDay2));

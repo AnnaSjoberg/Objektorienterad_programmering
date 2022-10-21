@@ -28,6 +28,6 @@ public class Customer {
     public boolean isActiveMember() {
         LocalDate oneYearAgo = LocalDate.now().minusYears(1);
         LocalDate dateOfPurchase = LocalDate.parse(getPurchaseDate());
-        return (dateOfPurchase.isAfter(oneYearAgo));
+        return (dateOfPurchase.isAfter(oneYearAgo) || dateOfPurchase.isEqual(oneYearAgo));
     }
 }

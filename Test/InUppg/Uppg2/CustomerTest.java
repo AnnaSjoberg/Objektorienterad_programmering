@@ -2,13 +2,15 @@ package InUppg.Uppg2;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CustomerTest {
     String mockName = "Ture Mackapär";
     String mockID = "1603151234";
-    String mockDateValid = "2022-03-15";
+    String mockDateValid = LocalDate.now().minusDays(7).toString();
     String mockDateExpired = "2018-06-08";
 
     Customer c1 = new Customer(mockID, mockName, mockDateValid);
