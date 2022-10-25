@@ -1,6 +1,6 @@
 package sprint2.Uppg12;
 
-public class Bicycle extends Vehicle implements Printable, Wheeled {
+public class Bicycle extends Vehicle implements Wheeled {
     private int numberOfGears;
     private int currentGear;
     private int wheels;//2d
@@ -50,12 +50,13 @@ public class Bicycle extends Vehicle implements Printable, Wheeled {
 
     @Override
     public String printMe() {
-        String printOut = "Available data on bicycle: \n" +
+        String res = super.printMe();
+        res = "Available data on bicycle: \n" +
                 "Weight: " + getWeight() + " kg. \n" +
                 "Speed: " + getSpeed() + " kph. \n" +
                 "Number of gears: " + getNumberOfGears() + ". \n" +
                 "Current gear: " + getCurrentGear() + ".";
-        return printOut;
+        return res;
     }
 
     @Override

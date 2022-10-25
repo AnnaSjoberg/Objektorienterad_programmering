@@ -1,6 +1,6 @@
 package sprint2.Uppg12;
 
-public class Boat extends Vehicle implements Printable {
+public class Boat extends Vehicle {
     private double deadWeightTonnage;
 
     public Boat(int speed, double weight, double deadWeightTonnage) {
@@ -23,12 +23,14 @@ public class Boat extends Vehicle implements Printable {
             System.out.println("Full speed ahead");
         }
     }
+
     @Override
     public String printMe() {
-        String printOut = "Available data on boat: \n" +
+        String res = super.printMe();
+        res = "Available data on boat: \n" +
                 "Speed: " + getSpeed() + " kph. \n" +
                 "Weight: " + getWeight() + " kg. \n" +
                 "Dead weight tonnage: " + getDeadWeightTonnage();
-        return printOut;
+        return res;
     }
 }

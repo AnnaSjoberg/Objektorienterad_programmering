@@ -2,7 +2,7 @@ package sprint2.Uppg12;
 
 import java.io.Serializable;
 
-public abstract class Vehicle implements Serializable {
+public abstract class Vehicle implements Serializable, Printable {
     private int speed;
     private double weight;
 
@@ -29,6 +29,11 @@ public abstract class Vehicle implements Serializable {
         } else {
             this.speed = 0;
         }
+    }
+
+    @Override
+    public String printMe() {
+        return null;
     }
 }
 

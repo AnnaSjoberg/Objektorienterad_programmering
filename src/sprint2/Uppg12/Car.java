@@ -3,7 +3,7 @@ package sprint2.Uppg12;
 import java.io.Serializable;
 
 //wheels -> 2d
-public class Car extends Vehicle implements Printable, Wheeled {
+public class Car extends Vehicle implements Wheeled {
     private int numberOfGears;
     private int currentGear;
 
@@ -45,18 +45,32 @@ public class Car extends Vehicle implements Printable, Wheeled {
         }
     }
 
-
     @Override
     public String printMe() {
-        String printOut = "Available data on car: \n" +
+        String res = super.printMe();
+        res="Available data on car: \n" +
                 "Weight: " + getWeight() + " kg. \n" +
                 "Speed: " + getSpeed() + " kph. \n" +
                 "Number of gears: " + getNumberOfGears() + ". \n" +
                 "Current gear: " + getCurrentGear() + ". \n" +
                 "Number of wheels: " + getNumberOfWheels(); //2d egen utökning att lägga in det som hörde till det andra interfacet här
-        return printOut;
+        return res;
     }
 
+    /*
+        @Override
+        public String printMe() {
+            String printOut = "Available data on car: \n" +
+                    "Weight: " + getWeight() + " kg. \n" +
+                    "Speed: " + getSpeed() + " kph. \n" +
+                    "Number of gears: " + getNumberOfGears() + ". \n" +
+                    "Current gear: " + getCurrentGear() + ". \n" +
+                    "Number of wheels: " + getNumberOfWheels(); //2d egen utökning att lägga in det som hörde till det andra interfacet här
+            return printOut;
+        }
+
+
+     */
     @Override
     public int getNumberOfWheels() { //2d
         return this.wheels;

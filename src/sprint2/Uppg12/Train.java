@@ -1,6 +1,6 @@
 package sprint2.Uppg12;
 
-public class Train extends Vehicle implements Printable {
+public class Train extends Vehicle {
     private int numberOfCarriages;
 
     public Train(int speed, double weight, int numberOfCarriages) {
@@ -27,10 +27,11 @@ public class Train extends Vehicle implements Printable {
 
     @Override
     public String printMe() {
-        String printOut = "Available data on train: \n" +
+        String res = super.printMe();
+        res = "Available data on train: \n" +
                 "Weight: " + getWeight() + " kg. \n" +
                 "Speed: " + getSpeed() + " kph. \n" +
                 "Number of carriages: " + getNumberOfCarriages();
-        return printOut;
+        return res;
     }
 }

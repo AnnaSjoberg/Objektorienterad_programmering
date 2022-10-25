@@ -1,15 +1,17 @@
+package sprint3.uppg2;
+
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Scanner;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+        import java.awt.GridLayout;
+        import java.awt.event.ActionEvent;
+        import java.awt.event.ActionListener;
+        import java.util.Scanner;
+        import javax.swing.JFrame;
+        import javax.swing.JLabel;
+        import javax.swing.JPanel;
+        import javax.swing.JTextField;
 
 
-public class Main extends JFrame implements ActionListener{
+public class SigrunsFacit extends JFrame implements ActionListener {
 
     Scanner sc = new Scanner(System.in);
     JLabel mätarställningNuLabel = new JLabel("Ange mätarställning nu: ");
@@ -28,7 +30,7 @@ public class Main extends JFrame implements ActionListener{
 
 
 
-    public Main() {
+    public SigrunsFacit() {
         //lägger ut delpanelerna
         setLayout(new BorderLayout());
         add("West", questions);
@@ -93,6 +95,6 @@ public class Main extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        Main ö = new Main();
+        SigrunsFacit ö = new SigrunsFacit();
     }
 }
