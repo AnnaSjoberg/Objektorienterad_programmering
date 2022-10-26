@@ -22,20 +22,22 @@ public class Calculator {
         }
         return returnList;
     }
-    public String unitsListToString (List<Integer> list){
-        String res ="";
+    public List<String> unitsListToString (List<Integer> list){
+        List<String> res = new ArrayList<>();
+        String temp ="";
         String bigSuffix = "-lappar";
         String smallSuffix = "-kronor";
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) >0 ){
 
-                res += list.get(i)%availableUnits.get(i) + " " + availableUnits.get(i) +"\n";
+                temp += list.get(i)%availableUnits.get(i) + " " + availableUnits.get(i);
 
                 if (i <= 5){
-                    res += bigSuffix;
+                    temp += bigSuffix;
                 }else {
-                    res += smallSuffix;
+                    temp += smallSuffix;
                 }
+                res.add(temp);
             }
         }
         return res;

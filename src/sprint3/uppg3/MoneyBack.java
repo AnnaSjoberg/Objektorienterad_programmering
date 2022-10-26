@@ -16,7 +16,7 @@ public class MoneyBack extends JFrame implements ActionListener {
     JLabel pricePrompt = new JLabel("Varans pris: ");
     JLabel sumPaidPrompt = new JLabel("Summa överlämnade pengar: ");
     JLabel wantedUnitsPrompt = new JLabel("Vilka valörer vill du ha din växel i?");
-    JLabel calculations = new JLabel(" ");
+    JLabel changeReturned = new JLabel("Växel: ");
 
     JCheckBox x1000 = new JCheckBox("1000-lappar", false);
     JCheckBox x500 = new JCheckBox("500-lappar", false);
@@ -27,22 +27,23 @@ public class MoneyBack extends JFrame implements ActionListener {
     JCheckBox x10 = new JCheckBox("10-kronor", false);
     JCheckBox x5 = new JCheckBox("5-kronor", false);
     JCheckBox x2 = new JCheckBox("2-kronor", false);
-   // JCheckBox x1 = new JCheckBox("1-kronor", false);
-
+    JCheckBox x1 = new JCheckBox("1-kronor", true);
+    JPanel north = new JPanel();
+    JPanel west = new JPanel();
+    JPanel east = new JPanel();
+    JPanel south = new JPanel();
+    JPanel highUnits = new JPanel();
+    JPanel lowUnits = new JPanel();
     public MoneyBack() {
+
 
         setLayout(new BorderLayout());
 
-        JPanel west = new JPanel();
-        JPanel east = new JPanel();
-        JPanel south = new JPanel();
-        JPanel highUnits = new JPanel();
-        JPanel lowUnits = new JPanel();
 
-
+        north.setLayout(new BorderLayout());
         west.setLayout(new BorderLayout());
         east.setLayout(new BorderLayout());
-        south.setLayout(new BorderLayout());
+        south.setLayout(new GridLayout(11,1));
         highUnits.setLayout(new GridLayout(5, 1));
         lowUnits.setLayout(new GridLayout(5, 1));
 
@@ -54,10 +55,10 @@ public class MoneyBack extends JFrame implements ActionListener {
         east.add(price, BorderLayout.NORTH);
         east.add(sumPaid, BorderLayout.SOUTH);
 
-        add(south, BorderLayout.SOUTH);
-        south.add(wantedUnitsPrompt, BorderLayout.NORTH);
-        south.add(highUnits, BorderLayout.WEST);
-        south.add(lowUnits, BorderLayout.EAST);
+        add(north, BorderLayout.NORTH);
+        north.add(wantedUnitsPrompt, BorderLayout.NORTH);
+        north.add(highUnits, BorderLayout.WEST);
+        north.add(lowUnits, BorderLayout.EAST);
         highUnits.add(x1000);
         highUnits.add(x500);
         highUnits.add(x200);
@@ -68,7 +69,9 @@ public class MoneyBack extends JFrame implements ActionListener {
         lowUnits.add(x5);
         lowUnits.add(x2);
        // lowUnits.add(x1);
-        south.add(calculations, BorderLayout.SOUTH);
+
+        add(south, BorderLayout.SOUTH);
+        south.add(changeReturned);
 
         price.addActionListener(this);
         sumPaid.addActionListener(this);
@@ -84,7 +87,6 @@ public class MoneyBack extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         List<Boolean> wantedUnits = new ArrayList<>();
-        StringBuilder calculationMessage = new StringBuilder("Växel: ");
         Calculator calculator = new Calculator();
         int change=0;
         if (obj == price || obj == sumPaid){
@@ -97,7 +99,8 @@ public class MoneyBack extends JFrame implements ActionListener {
                 change = calculator.calculateChange(priceAsInt,sumPaidAsInt);
             }
 
-            calculationMessage.append(change + " kr. ");
+            changeReturned.setText("Växel: " + change + " kr.");
+            south.add(changeReturned);
 
             if (x1000.isSelected()){
                 wantedUnits.add(true);
@@ -143,13 +146,49 @@ public class MoneyBack extends JFrame implements ActionListener {
                 wantedUnits.add(true);
             } else {
                 wantedUnits.add(false);
+            }if (x1.isSelected()){
+                wantedUnits.add(true);
             }
-            wantedUnits.add(true);
         }
         List<Integer> unitsList = calculator.howManyOfEach(change,wantedUnits);
-        calculationMessage.append(calculator.unitsListToString(unitsList));
-        calculations.setText(String.valueOf(calculationMessage));
+        //calculationMessage.append(calculator.unitsListToString(unitsList));
+        //changeReturned.setText(String.valueOf(calculationMessage));
+        List<String> changeList = calculator.unitsListToString(unitsList);
+
+        for (int i = 0; i < changeList.size(); i++) {
+            //JLabel temp = new JLabel();
+        }
+
+        for (String listElement:changeList) {
+            //String temp = listElement;
+            JLabel temp = new JLabel(listElement);
+            //changeReturned.setText();
+            south.add(temp);
+        }
+
     }
+
+    /*
+     public String unitsListToString (List<Integer> list){
+        String res ="";
+        String bigSuffix = "-lappar";
+        String smallSuffix = "-kronor";
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) >0 ){
+
+                res += list.get(i)%availableUnits.get(i) + " " + availableUnits.get(i);
+
+                if (i <= 5){
+                    res += bigSuffix;
+                }else {
+                    res += smallSuffix;
+                }
+            }
+        }
+        return res;
+    }
+
+     */
 
 
     public static void main(String[] args) {
