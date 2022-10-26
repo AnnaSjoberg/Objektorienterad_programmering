@@ -39,7 +39,7 @@ public class RockPaperScissors extends JFrame implements ActionListener {
         JPanel headPanel = new JPanel(new BorderLayout());
         JPanel userPanel = new JPanel(new GridLayout(4, 1));
         JPanel computerPanel = new JPanel(new GridLayout(4, 1));
-        JPanel scorePanel = new JPanel(new GridLayout(1, 3));//alt GridLayout med 1,3 ??
+        JPanel scorePanel = new JPanel(new FlowLayout());//alt GridLayout med 1,3 ??
 
         add(headPanel, BorderLayout.NORTH);
         add(userPanel, BorderLayout.WEST);
@@ -59,15 +59,16 @@ public class RockPaperScissors extends JFrame implements ActionListener {
         computerPanel.add(computerScissors);
         computerPanel.add(computerPaper);
 
-        scorePanel.add(userScoreLabel, CENTER_ALIGNMENT);
+        scorePanel.add(userScoreLabel, RIGHT_ALIGNMENT);
         scorePanel.add(scoreDividerLabel, CENTER_ALIGNMENT);
-        scorePanel.add(computerScoreLabel, CENTER_ALIGNMENT);
+        scorePanel.add(computerScoreLabel, LEFT_ALIGNMENT);
 
         userRock.addActionListener(this);
         userScissors.addActionListener(this);
         userPaper.addActionListener(this);
 
-        setSize(300,200);
+       // pack();
+        setSize(150,200);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

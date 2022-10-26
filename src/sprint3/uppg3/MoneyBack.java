@@ -34,16 +34,15 @@ public class MoneyBack extends JFrame implements ActionListener {
     JPanel south = new JPanel();
     JPanel highUnits = new JPanel();
     JPanel lowUnits = new JPanel();
+
     public MoneyBack() {
 
-
+        //layout för de olika panelerna
         setLayout(new BorderLayout());
-
-
         north.setLayout(new BorderLayout());
         west.setLayout(new BorderLayout());
         east.setLayout(new BorderLayout());
-        south.setLayout(new GridLayout(11,1));
+        south.setLayout(new GridLayout(11, 1));
         highUnits.setLayout(new GridLayout(5, 1));
         lowUnits.setLayout(new GridLayout(5, 1));
 
@@ -68,7 +67,7 @@ public class MoneyBack extends JFrame implements ActionListener {
         lowUnits.add(x10);
         lowUnits.add(x5);
         lowUnits.add(x2);
-       // lowUnits.add(x1);
+        // lowUnits.add(x1);
 
         add(south, BorderLayout.SOUTH);
         south.add(changeReturned);
@@ -82,134 +81,81 @@ public class MoneyBack extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object obj = e.getSource();
         List<Boolean> wantedUnits = new ArrayList<>();
         Calculator calculator = new Calculator();
-        int change=0;
-        if (obj == price || obj == sumPaid){
-            Scanner scPrice = new Scanner(price.getText());
-            Scanner scSumPaid = new Scanner(sumPaid.getText());
+        int change = 0;
 
-            if (scPrice.hasNextInt() && scSumPaid.hasNextInt()){
-                int priceAsInt = scPrice.nextInt();
-                int sumPaidAsInt = scSumPaid.nextInt();
-                change = calculator.calculateChange(priceAsInt,sumPaidAsInt);
-            }
+        Scanner scPrice = new Scanner(price.getText());
+        Scanner scSumPaid = new Scanner(sumPaid.getText());
 
-            changeReturned.setText("Växel: " + change + " kr.");
-            south.add(changeReturned);
-
-            if (x1000.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x500.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x200.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x100.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x50.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x20.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x10.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x5.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }
-            if (x2.isSelected()){
-                wantedUnits.add(true);
-            } else {
-                wantedUnits.add(false);
-            }if (x1.isSelected()){
-                wantedUnits.add(true);
-            }
+        if (scPrice.hasNextInt() && scSumPaid.hasNextInt()) {
+            int priceAsInt = scPrice.nextInt();
+            int sumPaidAsInt = scSumPaid.nextInt();
+            change = calculator.calculateChange(priceAsInt, sumPaidAsInt);
         }
-        List<Integer> unitsList = calculator.howManyOfEach(change,wantedUnits);
-        //calculationMessage.append(calculator.unitsListToString(unitsList));
-        //changeReturned.setText(String.valueOf(calculationMessage));
+
+        changeReturned.setText("Växel: " + change + " kr.");
+        south.add(changeReturned);
+
+        if (x1000.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x500.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x200.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x100.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x50.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x20.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x10.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x5.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        if (x2.isSelected()) {
+            wantedUnits.add(true);
+        } else {
+            wantedUnits.add(false);
+        }
+        wantedUnits.add(true); //för att alltid ge "resten" i enkronor
+
+        List<Integer> unitsList = calculator.howManyOfEach(change, wantedUnits);
         List<String> changeList = calculator.unitsListToString(unitsList);
 
-        for (int i = 0; i < changeList.size(); i++) {
-            //JLabel temp = new JLabel();
-        }
-
-        for (String listElement:changeList) {
-            //String temp = listElement;
+        for (String listElement : changeList) {
             JLabel temp = new JLabel(listElement);
-            //changeReturned.setText();
             south.add(temp);
         }
-
     }
-
-    /*
-     public String unitsListToString (List<Integer> list){
-        String res ="";
-        String bigSuffix = "-lappar";
-        String smallSuffix = "-kronor";
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) >0 ){
-
-                res += list.get(i)%availableUnits.get(i) + " " + availableUnits.get(i);
-
-                if (i <= 5){
-                    res += bigSuffix;
-                }else {
-                    res += smallSuffix;
-                }
-            }
-        }
-        return res;
-    }
-
-     */
-
 
     public static void main(String[] args) {
         MoneyBack main = new MoneyBack();
     }
 }
-/*
-Gör ett grafiskt program som beräknar hur mycket växel man får tillbaka när man handlar.
-Ange pris på vara och hur mycket du betalar i två JTextFields
-Gör checkboxar för tusenlappar, 500-lappar, 200-lappar, hundralappar, femtilappar, tjugolappar, tior,
-femmor, tvåkronor och enkronor
-Låt användaren checka rutorna för de valörer hen vill ha växeln i
-Räkna ut hur många tusenlappar, 500-lappar, 200-lappar, hundralappar, femtilappar, tjugolappar, tior,
-femmor, tvåkronor och enkronor (alltså dem som användaren har checkat) man får tillbaka.
-Det går bra att återanvända kod du tidigare har skrivit.
-
- JTextField price
- JTextField paid
-
-Skapa lista över de rutor som checkats. (true på indexet för den valutan, false om inte checkat)
-skicka in listan i metod tillsammans med summan i växel
-
-
- */

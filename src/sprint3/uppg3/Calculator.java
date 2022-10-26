@@ -11,6 +11,7 @@ public class Calculator {
     }
 
     public List<Integer> howManyOfEach(int changeSum, List<Boolean> wantedUnits) {
+        System.out.println(wantedUnits);
         List<Integer> returnList = new ArrayList<>();
         for (int i = 0; i < wantedUnits.size(); i++) {
             if ((wantedUnits.get(i)) && (changeSum >= availableUnits.get(i))) {
@@ -20,21 +21,21 @@ public class Calculator {
                 returnList.add(0);
             }
         }
+        System.out.println(returnList);
         return returnList;
     }
-    public List<String> unitsListToString (List<Integer> list){
+
+    public List<String> unitsListToString(List<Integer> list) {
         List<String> res = new ArrayList<>();
-        String temp ="";
         String bigSuffix = "-lappar";
         String smallSuffix = "-kronor";
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) >0 ){
-
-                temp += list.get(i)%availableUnits.get(i) + " " + availableUnits.get(i);
-
-                if (i <= 5){
+            String temp = "  ";
+            if (list.get(i) > 0) {
+                temp += list.get(i) + " " + availableUnits.get(i);
+                if (i <= 5) {
                     temp += bigSuffix;
-                }else {
+                } else {
                     temp += smallSuffix;
                 }
                 res.add(temp);
