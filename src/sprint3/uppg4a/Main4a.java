@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Main4 extends JFrame implements ActionListener {
+public class Main4a extends JFrame implements ActionListener {
     JTextField nameF = new JTextField();
     JButton openB = new JButton("Open");
     JButton saveB = new JButton("Save");
@@ -15,7 +15,7 @@ public class Main4 extends JFrame implements ActionListener {
     JTextArea textArea = new JTextArea();
 
 
-    public Main4(){
+    public Main4a(){
         Builder builder = new Builder(promptL,nameF,openB,saveB,printB,exitB,textArea);
         JPanel optionsP = builder.buildTopPanel();
         JScrollPane scrollPane = builder.buildScrollPane();
@@ -64,6 +64,6 @@ När användaren trycker ”Avsluta” ska programmet avslutas.
 
 
     public static void main(String[] args) {
-        Main4 m = new Main4();
+        Main4a m = new Main4a();
     }
 }
