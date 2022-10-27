@@ -2,19 +2,20 @@ package sprint3.uppg4b;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
 public class Builder extends JFrame {
     private JLabel l;
-    private JTextField tf;
+    private JComboBox cb;
     private JButton b1;
     private JButton b2;
     private JButton b3;
     private JButton b4;
     private JTextArea ta;
 
-    public Builder(JLabel l, JTextField tf, JButton b1, JButton b2, JButton b3, JButton b4, JTextArea ta) {
+    public Builder(JLabel l, JComboBox cb, JButton b1, JButton b2, JButton b3, JButton b4, JTextArea ta) {
         this.l = l;
-        this.tf = tf;
+        this.cb = cb;
         this.b1 = b1;
         this.b2 = b2;
         this.b3 = b3;
@@ -26,7 +27,7 @@ public class Builder extends JFrame {
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1, 6));
         p.add(l);
-        p.add(tf);
+        p.add(cb);
         p.add(b1);
         p.add(b2);
         p.add(b3);
@@ -40,4 +41,12 @@ public class Builder extends JFrame {
         ta.setFont(new Font("Monospaced", Font.PLAIN, 14));
         return new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     }
+
+    public JComboBox configureComboBox(Vector<String> fileCache) {
+        cb = new JComboBox<>(fileCache);
+        cb.setSelectedIndex(-1);
+        cb.setEditable(true);
+        return cb;
+    }
+
 }

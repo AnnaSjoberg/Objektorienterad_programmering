@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
-public class ButtonActionLogic {
+public class FileLogic {
 
     public void readInFile(String fileName, JTextArea ta) {
         try (FileReader fr = new FileReader(fileName)) {
@@ -35,7 +37,36 @@ public class ButtonActionLogic {
             e.printStackTrace();
         }
     }
-}
 
+
+    public void loadFileNames (String cachePath, List<String> fileCache){
+        try (FileReader fr = new FileReader(cachePath);
+        Scanner sc = new Scanner(fr);){
+            while (sc.hasNextLine()){
+                fileCache.add(sc.nextLine().trim());
+            }
+            fr.close();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+}
+/*
+private void laddaFilnamn() {
+     try (FileReader r = new FileReader(fileNameCachePath);
+        Scanner sc = new Scanner(r);){
+
+        while(sc.hasNextLine()){
+            fileCache.add(sc.nextLine().trim());
+        }
+        r.close();
+     }
+     catch (IOException e) {
+        e.printStackTrace();
+     }
+   }
+ */
 
 
