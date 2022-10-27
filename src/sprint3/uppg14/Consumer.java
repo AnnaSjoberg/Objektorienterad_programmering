@@ -6,7 +6,7 @@ public class Consumer implements Runnable {
     private MyQueue q;
 
     public Consumer(long interval, MyQueue q) {
-        this.interval = interval;
+        this.interval = interval*1000;
         this.q = q;
     }
 
@@ -23,7 +23,7 @@ public class Consumer implements Runnable {
     public void run() {
         while (XThread.delay(interval)){
             System.out.println(q.take());
-            System.out.flush();
+            //System.out.flush();
         }
     }
 }
