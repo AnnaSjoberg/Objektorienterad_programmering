@@ -1,7 +1,7 @@
 package sprint3.uppg8a;
 
 public class Main8a {
-}
+
 /*
 Gör ett nytt projekt i din utvecklingsmiljö, lägg in 2-3 filer.
 Gör ett nytt repo på GitHub, koppla till ditt nya projekt.
@@ -15,3 +15,4 @@ Kolla att ändringen kom med.
 Committa och pusha till github
 Kolla att dina ändringar och bägge brancherna syns där
  */
+}
