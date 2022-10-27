@@ -1,7 +1,7 @@
 package sprint3.uppg8a;
 
 public class Nonsense {
-    //Det här hände på den tiden vi bodde
-    // hemma hos mina föräldrar hade flyttat
-    // men vi hyrde i andra hand
+
+    //kan det börja fungera nu?
+    //jag som trodde det här skulle vara en enkla delen
 }
