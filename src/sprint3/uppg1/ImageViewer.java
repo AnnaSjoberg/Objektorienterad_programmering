@@ -2,12 +2,14 @@ package sprint3.uppg1;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImageViewer extends JFrame {
+public class ImageViewer extends JFrame implements ActionListener {
 
     JLabel imageViewer;
     JButton button = new JButton("Show next picture");
@@ -39,7 +41,7 @@ public class ImageViewer extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         add(panel);
-        button.addActionListener(new OurActionListener(imageViewer));
+        button.addActionListener(this);
         panel.add(imageViewer, BorderLayout.NORTH);
         panel.add(button, BorderLayout.CENTER);
         pack();
@@ -52,5 +54,11 @@ public class ImageViewer extends JFrame {
 
     public static void main(String[] args) {
         ImageViewer iv = new ImageViewer();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        imageIndex = (imageIndex + 1) % imageCount;
+        imageViewer.setIcon(new ImageIcon( imageFileNames.get(imageIndex)));
     }
 }
