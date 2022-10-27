@@ -47,15 +47,12 @@ public class ImageViewer extends JFrame implements ActionListener {
         panel.add(randomPic, BorderLayout.EAST);
         nextPic.addActionListener(this);
         randomPic.addActionListener(this);
-        setSize(200, 400);
+
+        pack();
+        setSize(400, 300);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-
-    public static void main(String[] args) {
-        ImageViewer iv = new ImageViewer();
     }
 
     @Override
@@ -64,10 +61,19 @@ public class ImageViewer extends JFrame implements ActionListener {
             imageIndex = (imageIndex + 1) % imageCount;
             imageViewer.setIcon(new ImageIcon(imageFileNames.get(imageIndex)));
         } else if (e.getSource() == randomPic) {
+
             int randomizer = (int) (Math.random() * imageCount);
 
-            imageIndex = (imageIndex + randomizer) % imageCount;
+            if (randomizer != imageIndex) {
+                imageIndex = randomizer;
+            } else {
+                imageIndex = (imageIndex + 2) % imageCount;
+            }
             imageViewer.setIcon(new ImageIcon(imageFileNames.get(imageIndex)));
         }
+    }
+
+    public static void main(String[] args) {
+        ImageViewer iv = new ImageViewer();
     }
 }
