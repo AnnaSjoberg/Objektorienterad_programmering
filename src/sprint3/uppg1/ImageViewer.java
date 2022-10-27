@@ -12,7 +12,8 @@ import java.util.List;
 public class ImageViewer extends JFrame implements ActionListener {
 
     JLabel imageViewer;
-    JButton button = new JButton("Show next picture");
+    JButton nextPic = new JButton("Show next picture");
+    JButton randomPic = new JButton("Show random picture");
     final String imagesPath = "/Users/HP/OneDrive - Nackademin AB/OOP/bilder/";
     Path imageFolderPath = Paths.get(imagesPath);
     int imageIndex;
@@ -41,15 +42,16 @@ public class ImageViewer extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         add(panel);
-        button.addActionListener(this);
         panel.add(imageViewer, BorderLayout.NORTH);
-        panel.add(button, BorderLayout.CENTER);
-        pack();
+        panel.add(nextPic, BorderLayout.WEST);
+        panel.add(randomPic, BorderLayout.EAST);
+        nextPic.addActionListener(this);
+        randomPic.addActionListener(this);
+        setSize(200, 400);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-//här låter jag den visa bilderna en i taget i ordning 1-5
 
 
     public static void main(String[] args) {
@@ -58,7 +60,14 @@ public class ImageViewer extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        imageIndex = (imageIndex + 1) % imageCount;
-        imageViewer.setIcon(new ImageIcon( imageFileNames.get(imageIndex)));
+        if (e.getSource() == nextPic) {
+            imageIndex = (imageIndex + 1) % imageCount;
+            imageViewer.setIcon(new ImageIcon(imageFileNames.get(imageIndex)));
+        } else if (e.getSource() == randomPic) {
+            int randomizer = (int) (Math.random() * imageCount);
+
+            imageIndex = (imageIndex + randomizer) % imageCount;
+            imageViewer.setIcon(new ImageIcon(imageFileNames.get(imageIndex)));
+        }
     }
 }
