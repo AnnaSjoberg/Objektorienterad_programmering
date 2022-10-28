@@ -22,7 +22,8 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         while (XThread.delay(interval)){
-            System.out.println(q.take());
+            Product p = q.take();
+            System.out.println( p.getName() + " Priority level: " + p.getPrio());
             //System.out.flush();
         }
     }
@@ -35,4 +36,8 @@ Producenten lägger in strängar i kön i det tidsintervall som anges i time-var
 producenten har lagt sitt ord i kön
 Konsumenten plockar ut strängar ur kön i det tidsintervall som anges i time-variabeln. Gör en utskrift
 när konsumenten har plockat ett ord från kön. Interaktionerna med kön ska vara synkroniserade
+
+
+14d
+Ändra Konsument-klassen så att även prioriteten skrivs ut när ett objekt tas ur kön
  */

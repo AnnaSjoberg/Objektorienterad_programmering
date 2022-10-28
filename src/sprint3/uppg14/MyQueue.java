@@ -4,41 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyQueue {
-    private List<Object> l = new ArrayList<>();
+    private List<Product> prodList = new ArrayList<>();
     public int size(){
-        return l.size();
+        return prodList.size();
     }
 
-    public synchronized List getL() {
-        return l;
+    public synchronized List getProdList() {
+        return prodList;
     }
 
-    public synchronized void put (Object o){
-       l.add(o);
+    public synchronized void put (Product p){
+        int prio = Thread.currentThread().getPriority();
+        int i;
+        for (i=size()-1;i>=0 && prio> prodList.get(i).getPrio(); i--)
+        ;
+        prodList.add((i+1), p);
        notify();
     //void put(Object o) – Objektet o läggs in sist i kön
     }
-    public synchronized Object take(){
-        while (l.isEmpty()){
+
+    /*
+      System.out.println("Putting "+ obj.getText());
+        int p = Thread.currentThread().getPriority();
+        //alternativt sätt att ta fram prioriteten:
+        //int p = obj.getPri();
+        int i;
+
+        //leta baklänges i kön tills rätt prio hittas
+       // i kommer att tilldelas värdet på den plats före där vi vill lägga in vårt obj
+        for (i=size()-1; i>=0 && p > ((QueueElement) l.get(i)).pri; i--)
+         ;
+        l.add(i+1, obj);
+        notify()
+     */
+
+
+
+    public synchronized Product take(){
+        while (prodList.isEmpty()){
             try {
                 wait();
             }catch (InterruptedException e){
                 return null;
             }
         }
-        Object o = l.get(0);
-        l.remove(0);
-        return o;
-//Object take() – returnerar det objekt som ligger först i kön
-    }
+        Product p = prodList.get(0);
+        prodList.remove(0);
+        return p;
 
+    }
+    public void printQueue (){
+        for (Product p:prodList) {
+            System.out.println(p.getName());
+        }
+    }
 }
-/*
-Skriv en egen Kö-klass, MyQueue.
-Kön ska ha följande funktioner:
-void put(Object o) – Objektet o läggs in sist i kön
-Object take() – returnerar det objekt som ligger först i kön
-Använd dig av wait() i take, om inget objekt finns i kön ska den tråd som vill hämta ett objekt få vänta
-Använd dig av notify() i put, när det kommer ett objekt till kön ska de väntande trådarna notifieras.
-Denna kod finns i föreläsningarna/filmerna.
- */
