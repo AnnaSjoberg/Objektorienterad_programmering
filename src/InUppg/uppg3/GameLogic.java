@@ -34,15 +34,13 @@ public class GameLogic extends MouseAdapter {
          return rList;
     }
 
-    public List<String> currentOrder (){
-    return null;
-    }
 
 
     // en mouseClicked med lambdas för Nytt spel som randomiserar alla knappar
     @Override
     public void mouseClicked(MouseEvent e) {
-        List<String> currentOrder = new ArrayList<>();
+
+
 
 
       //  if (e.getSource()) //knapparna inuti spelet, när man flyttar runt knapparna.
