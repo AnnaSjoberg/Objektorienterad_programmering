@@ -37,14 +37,10 @@ public class Main extends JFrame {
         setLayout(new BorderLayout());
         gameLogic g = new gameLogic();
         List<String> list = g.randomizeList();
-    //    List<String> list = List.of("1", "2,", "3", "4", "5", "6", "7", "8"
-       //         , "9", "10", "11", "12", "13", "14", "15", "");
-   //     g.randomizeListV(list);
-    //    System.out.println(list.get(0) + " " + list.get(5));
 
         PanelBuilder panelBuilder = new PanelBuilder();
-       // JPanel gamePanel = panelBuilder.gamePanel(buttonsarray);
-        //add(gamePanel, BorderLayout.SOUTH);
+        JPanel gamePanel = panelBuilder.gamePanel(buttonsList);
+        add(gamePanel, BorderLayout.SOUTH);
 
         add(newGame, BorderLayout.WEST);
         add(message, BorderLayout.EAST);
