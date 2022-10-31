@@ -7,6 +7,7 @@ public class Main extends JFrame {
     JLabel message = new JLabel();
     JButton newGame = new JButton("New game");
 
+    JButton[][] buttonsarray = new JButton[4][4];
     JButton b1 = new JButton("1");
     JButton b2 = new JButton("2");
     JButton b3 = new JButton("3");
@@ -23,6 +24,13 @@ public class Main extends JFrame {
     JButton b14 = new JButton("14");
     JButton b15 = new JButton("15");
     JButton b16 = new JButton(" ");
+
+
+
+    public Main() {
+        PanelBuilder panelBuilder = new PanelBuilder();
+        JPanel gamePanel =
+    }
 
 
     public static void main(String[] args) {

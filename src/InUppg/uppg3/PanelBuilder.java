@@ -25,6 +25,8 @@ public class PanelBuilder {
         res.add(buttons[3][2]);
         res.add(buttons[3][3]);
 
-
+        return res;
     }
+
+
 }
