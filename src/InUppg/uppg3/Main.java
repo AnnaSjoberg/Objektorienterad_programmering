@@ -1,6 +1,8 @@
 package InUppg.uppg3;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class Main extends JFrame {
 
@@ -8,7 +10,7 @@ public class Main extends JFrame {
     JButton newGame = new JButton("New game");
 
 
- JButton[][] buttonsarray = {{
+     JButton[][] buttonsarray = {{
          new JButton("1"),
          new JButton("2"),
          new JButton("3"),
@@ -25,12 +27,24 @@ public class Main extends JFrame {
                  new JButton("14"),
                  new JButton("15"),
                  new JButton(" ")}};
-    //kommentar
+
+     List<JButton> buttonsList = List.of(); //alternativt sätt att skapa upp alla knapparna.
+    // Funderar på om detta är enklare för att kunna randomisera ordningen på knapparna när man ska starta nytt spel
+
     public Main() {
+        setLayout(new BorderLayout());
+
+
         PanelBuilder panelBuilder = new PanelBuilder();
         JPanel gamePanel = panelBuilder.gamePanel(buttonsarray);
-        add(gamePanel);
+        add(gamePanel, BorderLayout.SOUTH);
 
+        add(newGame,BorderLayout.WEST);
+        add(message,BorderLayout.EAST);
+
+
+
+        //standard avslutning
         pack();
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
