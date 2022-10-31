@@ -26,14 +26,19 @@ public class Main extends JFrame {
          {new JButton("13"),
                  new JButton("14"),
                  new JButton("15"),
-                 new JButton(" ")}};
+                 new JButton("")}};
 
      List<JButton> buttonsList = List.of(); //alternativt sätt att skapa upp alla knapparna.
     // Funderar på om detta är enklare för att kunna randomisera ordningen på knapparna när man ska starta nytt spel
 
     public Main() {
         setLayout(new BorderLayout());
+        gameLogic g = new gameLogic();
 
+        List<String> list = List.of("1","2,","3","4","5","6","7","8"
+                ,"9","10","11","12","13","14","15","");
+        g.randomizeListV(list);
+        System.out.println(list.get(0) +" "+ list.get(5));
 
         PanelBuilder panelBuilder = new PanelBuilder();
         JPanel gamePanel = panelBuilder.gamePanel(buttonsarray);
