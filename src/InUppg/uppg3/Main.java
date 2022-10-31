@@ -34,10 +34,10 @@ public class Main extends JFrame {
     public Main() {
         setLayout(new BorderLayout());
         GameLogic g = new GameLogic();
-        List<String> list = g.randomizeList();
+        List<String> currentOrder = g.randomizeList();
 
         PanelBuilder panelBuilder = new PanelBuilder();
-        JPanel gamePanel = panelBuilder.gamePanel(buttonsList);
+        JPanel gamePanel = panelBuilder.gamePanel(buttonsList, currentOrder);
         add(gamePanel, BorderLayout.SOUTH);
 
         add(newGame, BorderLayout.WEST);
