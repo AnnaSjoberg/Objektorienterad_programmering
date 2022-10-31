@@ -7,15 +7,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class gameLogic extends MouseAdapter {
-    List<JButton> sortedButtonList = new ArrayList<>(); //om denna -> använda konstruktor för att sätta värdena
+public class GameLogic extends MouseAdapter {
+ //   List<JButton> sortedButtonList = new ArrayList<>(); //om denna -> använda konstruktor för att sätta värdena
 
 
     public List<String> getSortedStringList() {
         List<String> sortedStringList = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 15; i++) {
             sortedStringList.add(""+(i+1));
         }
+        sortedStringList.add("");
         return sortedStringList;
     }
 

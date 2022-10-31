@@ -2,8 +2,6 @@ package InUppg.uppg3;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Main extends JFrame {
@@ -35,7 +33,7 @@ public class Main extends JFrame {
 
     public Main() {
         setLayout(new BorderLayout());
-        gameLogic g = new gameLogic();
+        GameLogic g = new GameLogic();
         List<String> list = g.randomizeList();
 
         PanelBuilder panelBuilder = new PanelBuilder();
