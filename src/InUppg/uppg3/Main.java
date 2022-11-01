@@ -2,18 +2,18 @@ package InUppg.uppg3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Main extends JFrame implements MouseListener {
-    // kommentar
+public class Main extends JFrame implements ActionListener {
+
     JLabel message = new JLabel();
     JButton newGame = new JButton("New game");
-
-    //alternativt sätt att skapa upp alla knapparna.
-    // Funderar på om detta är enklare för att kunna randomisera ordningen på knapparna när man ska starta nytt spel
 
 
     JButton b1 = new JButton();
@@ -39,7 +39,8 @@ public class Main extends JFrame implements MouseListener {
     GameLogic g = new GameLogic();
     List<String> currentOrder = new ArrayList<>();
 
-
+    // Lägga till en boolean isDemo som skickas med i anropet för att skapa currentOrder
+    // så att den blir i nummerordning istället för ranodmiserad.
     public Main() {
         buttonsList = List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16);
         setLayout(new BorderLayout());
@@ -51,23 +52,22 @@ public class Main extends JFrame implements MouseListener {
         add(newGame, BorderLayout.WEST);
         add(message, BorderLayout.EAST);
 
-        b1.addMouseListener(this);
-        b2.addMouseListener(this);
-        b3.addMouseListener(this);
-        b4.addMouseListener(this);
-        b5.addMouseListener(this);
-        b6.addMouseListener(this);
-        b7.addMouseListener(this);
-        b8.addMouseListener(this);
-        b9.addMouseListener(this);
-        b10.addMouseListener(this);
-        b11.addMouseListener(this);
-        b12.addMouseListener(this);
-        b13.addMouseListener(this);
-        b14.addMouseListener(this);
-        b15.addMouseListener(this);
-        b16.addMouseListener(this);
-
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
+        b5.addActionListener(this);
+        b6.addActionListener(this);
+        b7.addActionListener(this);
+        b8.addActionListener(this);
+        b9.addActionListener(this);
+        b10.addActionListener(this);
+        b11.addActionListener(this);
+        b12.addActionListener(this);
+        b13.addActionListener(this);
+        b14.addActionListener(this);
+        b15.addActionListener(this);
+        b16.addActionListener(this);
 
         //standard avslutning
         pack();
@@ -75,40 +75,42 @@ public class Main extends JFrame implements MouseListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-
     @Override
-    public void mouseClicked(MouseEvent e) {
-        Object o = e.getSource();
-        if (e.getSource() == b6) {
-            if (b2.getText().equals("") || b5.getText().equals("")|| b7.getText().equals("") || b10.getText().equals(""))
-                System.out.println("hej");
+    public void actionPerformed(ActionEvent e) {
+        String tempButton;
+        int tempButtonNr = currentOrder.indexOf(((JButton) e.getSource()).getText());
+        //Testa om tom knapp är till höger om klickad
+        if ((e.getSource() == b1 || e.getSource() == b2 || e.getSource() == b3 ||
+                e.getSource() == b5 || e.getSource() == b6 || e.getSource() == b7 ||
+                e.getSource() == b9 || e.getSource() == b10 || e.getSource() == b11 ||
+                e.getSource() == b13 || e.getSource() == b14 || e.getSource() == b15)
+                && currentOrder.get(tempButtonNr + 1).equals("")) {
+
+            Collections.swap(currentOrder, tempButtonNr, tempButtonNr + 1);
+            interfaceUpdater();
+
+            //Testa om tom knapp är till vänster om klickad
+        } else if ((e.getSource() == b2 || e.getSource() == b3 || e.getSource() == b4 ||
+                e.getSource() == b6 || e.getSource() == b7 || e.getSource() == b8 ||
+                e.getSource() == b10 || e.getSource() == b11 || e.getSource() == b12 ||
+                e.getSource() == b14 || e.getSource() == b15 || e.getSource() == b16)
+                && currentOrder.get(tempButtonNr - 1).equals("")) {
+
+            Collections.swap(currentOrder, tempButtonNr, tempButtonNr - 1);
+            interfaceUpdater();
+
 
         }
-        if (((JButton)e.getSource()).getText().equals("5")){
-            System.out.println("5");
+
+    }
+
+    public void interfaceUpdater() {
+        int i = 0;
+        for (JButton button : buttonsList) {
+            button.setText(currentOrder.get(i++));
+            revalidate();
+            repaint();
         }
-    }
-//jButton1.getText().equals("X")
-
-    //icke aktuella
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 
     public static void main(String[] args) {
