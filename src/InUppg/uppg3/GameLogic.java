@@ -28,9 +28,11 @@ public class GameLogic extends MouseAdapter {
         }
         return true;
     }
-    public List<String> randomizeList (){
+    public List<String> randomizeList (boolean isDemo){
         List<String> rList =  getSortedStringList();
-         Collections.shuffle(rList);
+        if (!isDemo) {
+            Collections.shuffle(rList);
+        }
          return rList;
     }
 

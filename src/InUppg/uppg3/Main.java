@@ -37,12 +37,14 @@ public class Main extends JFrame implements ActionListener {
     GameLogic gameLogic = new GameLogic();
     List<String> currentOrder = new ArrayList<>();
 
+    boolean isDemo;
+
     // Lägga till en boolean isDemo som skickas med i anropet för att skapa currentOrder
     // så att den blir i nummerordning istället för ranodmiserad.
     public Main() {
         buttonsList = List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16);
         setLayout(new BorderLayout());
-        currentOrder = gameLogic.randomizeList();
+        currentOrder = gameLogic.randomizeList(true);//boolean som är false i def. men som sätts till true för demo
         PanelBuilder panelBuilder = new PanelBuilder();
         JPanel gamePanel = panelBuilder.gamePanel(buttonsList, currentOrder);
         add(gamePanel, BorderLayout.SOUTH);
@@ -119,8 +121,13 @@ public class Main extends JFrame implements ActionListener {
             interfaceUpdater();
 
         }
+        //OBS DENNA FUNKAR INTE! DET BLIR INTE NÅN UTSKRIFT I PANELEN ELLER I TERMNINALEN!!
+        //Samma problem ifall det ligger inuti de andra if-else-satserna
         if (gameLogic.isSorted(currentOrder)){
             message.setText("Congratulations, you won!!!");
+            revalidate();
+            repaint();
+             System.out.println("vinst");
         }
     }
 
