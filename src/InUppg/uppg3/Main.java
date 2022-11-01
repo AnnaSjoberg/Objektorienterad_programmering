@@ -99,6 +99,23 @@ public class Main extends JFrame implements ActionListener {
             Collections.swap(currentOrder, tempButtonNr, tempButtonNr - 1);
             interfaceUpdater();
 
+            //Testa om tom knapp är under klickad
+        } else if ((e.getSource() == b1 || e.getSource() == b2 || e.getSource() == b3 || e.getSource() == b4 ||
+                e.getSource() == b5 || e.getSource() == b6 || e.getSource() == b7 || e.getSource() == b8 ||
+                e.getSource() == b9 || e.getSource() == b10 || e.getSource() == b11 || e.getSource() == b12)
+                && currentOrder.get(tempButtonNr + 4).equals("")) {
+
+            Collections.swap(currentOrder, tempButtonNr, tempButtonNr + 4);
+            interfaceUpdater();
+
+            //Testa om tom knapp är över klickad
+        } else if ((e.getSource() == b5 || e.getSource() == b6 || e.getSource() == b7 || e.getSource() == b8 ||
+                e.getSource() == b9 || e.getSource() == b10 || e.getSource() == b11 || e.getSource() == b12 ||
+                e.getSource() == b13 || e.getSource() == b14 || e.getSource() == b15 || e.getSource() == b16)
+                && currentOrder.get(tempButtonNr - 4).equals("")) {
+
+            Collections.swap(currentOrder, tempButtonNr, tempButtonNr - 4);
+            interfaceUpdater();
 
         }
 
