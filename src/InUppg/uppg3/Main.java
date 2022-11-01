@@ -77,6 +77,9 @@ public class Main extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        //För samtliga if-else-satser återstår att kontrollera om ordningen har blivit korrekt.
+
         String tempButton;
         int tempButtonNr = currentOrder.indexOf(((JButton) e.getSource()).getText());
         //Testa om tom knapp är till höger om klickad
