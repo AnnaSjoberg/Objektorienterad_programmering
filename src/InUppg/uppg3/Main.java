@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +34,7 @@ public class Main extends JFrame implements ActionListener {
     List<JButton> buttonsList = new ArrayList<>();
 
 
-    GameLogic g = new GameLogic();
+    GameLogic gameLogic = new GameLogic();
     List<String> currentOrder = new ArrayList<>();
 
     // Lägga till en boolean isDemo som skickas med i anropet för att skapa currentOrder
@@ -44,7 +42,7 @@ public class Main extends JFrame implements ActionListener {
     public Main() {
         buttonsList = List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16);
         setLayout(new BorderLayout());
-        currentOrder = g.randomizeList();
+        currentOrder = gameLogic.randomizeList();
         PanelBuilder panelBuilder = new PanelBuilder();
         JPanel gamePanel = panelBuilder.gamePanel(buttonsList, currentOrder);
         add(gamePanel, BorderLayout.SOUTH);
@@ -121,10 +119,12 @@ public class Main extends JFrame implements ActionListener {
             interfaceUpdater();
 
         }
-
+        if (gameLogic.isSorted(currentOrder)){
+            message.setText("Congratulations, you won!!!");
+        }
     }
 
-    public void interfaceUpdater() {
+    public void interfaceUpdater() { //Bör denna flyttas till GameLogic? Alternativt till PanelBuilder
         int i = 0;
         for (JButton button : buttonsList) {
             button.setText(currentOrder.get(i++));
