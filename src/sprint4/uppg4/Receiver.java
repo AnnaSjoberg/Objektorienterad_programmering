@@ -1,13 +1,27 @@
 package sprint4.uppg4;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
-public class Reciever {
+public class Receiver extends JFrame {
 
-    public Reciever() throws IOException {
+    JPanel panel = new JPanel();
+    JTextArea data = new JTextArea(30,20);
+
+
+    public Receiver() throws IOException {
+
+        panel.setBackground(Color.gray);
+        data.setBackground(Color.lightGray);
+        add(panel);
+        panel.add(data);
+        pack();
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
         int portNo = 12345;
         DatagramSocket dgS = new DatagramSocket(portNo);
         byte[] bytes = new byte[256];
@@ -16,11 +30,11 @@ public class Reciever {
             DatagramPacket dgP = new DatagramPacket(bytes, bytes.length);
             dgS.receive(dgP);
             String output = new String(dgP.getData(), 0, dgP.getLength());
-            System.out.println(output);
+            data.setText(data.getText() + output + "\n");
         }
     }
 
     public static void main(String[] args) throws IOException {
-        Reciever r = new Reciever();
+        Receiver r = new Receiver();
     }
 }
