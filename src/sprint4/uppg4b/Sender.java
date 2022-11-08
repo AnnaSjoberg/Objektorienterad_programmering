@@ -1,4 +1,4 @@
-package sprint4.uppg4;
+package sprint4.uppg4b;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Scanner;
+import java.net.MulticastSocket;
 
-public class SenderA extends JFrame implements ActionListener {
+public class Sender extends JFrame implements ActionListener {
     JPanel inputPanel = new JPanel();
     JTextField inputField = new JTextField("", 15);
     JButton submit = new JButton("Submit");
@@ -21,14 +21,36 @@ public class SenderA extends JFrame implements ActionListener {
 
 
     int portNo = 12345;
-    InetAddress toAddress = InetAddress.getLocalHost();
-    DatagramSocket dgS = new DatagramSocket();
+    InetAddress toAddress = InetAddress.getByName("234.235.236.237");
+    MulticastSocket mcS = new MulticastSocket();
 
-    public SenderA() throws IOException, InterruptedException {
-        city = JOptionPane.showInputDialog("Location: ").toUpperCase().trim();
+    public Sender() throws IOException {
+        city = JOptionPane.showInputDialog("Location: ");
         if (city == null || city.length() == 0) {
             System.exit(0);
         }
+        city = city.toUpperCase().trim();
+
+        graphicsBuilder();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        temp = inputField.getText().trim();
+        concatString = city + ":\t" + temp + "\u00B0C";
+
+        byte[] dataAsBytes = concatString.getBytes();
+        DatagramPacket dgP = new DatagramPacket(dataAsBytes, dataAsBytes.length, toAddress, portNo);
+        try {
+            mcS.send(dgP);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        inputField.setText("");
+
+    }
+
+    void graphicsBuilder (){
 
         setTitle(city);
         add(inputPanel);
@@ -46,21 +68,6 @@ public class SenderA extends JFrame implements ActionListener {
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        temp = inputField.getText().trim();
-        concatString = city + ":\t" + temp + "\u00B0C";
-
-        byte[] dataAsBytes = concatString.getBytes();
-        DatagramPacket dgP = new DatagramPacket(dataAsBytes, dataAsBytes.length, toAddress, portNo);
-        try {
-            dgS.send(dgP);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        inputField.setText("");
-
-    }
 
 /*
 Låt sensorprogrammet först fråga användaren efter vilken stad hen befinner sig i. Läs sedan in de
@@ -69,6 +76,6 @@ mottagaren
  */
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        SenderA a = new SenderA();
+        Sender a = new Sender();
     }
 }

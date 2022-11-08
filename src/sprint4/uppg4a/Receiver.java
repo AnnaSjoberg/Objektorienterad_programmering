@@ -1,4 +1,4 @@
-package sprint4.uppg4;
+package sprint4.uppg4a;
 
 import javax.swing.*;
 import java.awt.*;
