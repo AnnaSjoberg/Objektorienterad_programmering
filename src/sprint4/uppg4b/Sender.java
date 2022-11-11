@@ -67,14 +67,6 @@ public class Sender extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
-
-
-/*
-Låt sensorprogrammet först fråga användaren efter vilken stad hen befinner sig i. Läs sedan in de
-temperaturer användaren skriver från kommandoraden och skicka stadens namn och temperaturen till
-mottagaren
- */
-
     public static void main(String[] args) throws IOException, InterruptedException {
         Sender a = new Sender();
     }

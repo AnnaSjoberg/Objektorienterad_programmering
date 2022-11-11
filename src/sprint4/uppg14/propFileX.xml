@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>this was harder to figure out</comment>
+    <entry key="callString">Kristus är uppstånden</entry>
+    <entry key="responseString">Ja, Han är sannerligen uppstånden!</entry>
+    <entry key="fontName">Blackadder ITC</entry>
+    <entry key="fontSize">20</entry>
+    <entry key="backgroundColor">pink</entry>
+    <entry key="fontStyle">Bold</entry>
+</properties>
+    
+    

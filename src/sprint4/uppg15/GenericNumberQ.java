@@ -6,6 +6,9 @@ import java.util.List;
 public class GenericNumberQ <Q extends Number> implements Queue<Q>{
     private List<Q> numList = new ArrayList<>();
 
+    public List<Q> getNumList() {
+        return numList;
+    }
 
     @Override
     public void put(Q q) {
@@ -24,11 +27,30 @@ public class GenericNumberQ <Q extends Number> implements Queue<Q>{
         return numList.size();
     }
 
-    public float calcSum (){
-        float sum=0;
+    public double calcSum (){
+        double sum=0;
         for (Q comp:numList) {
-            sum+=comp.floatValue();
+
         }
         return sum;
+    }
+
+
+    public Q calcSum2(){
+
+        Double sum =0.0;
+        for (Q q:numList) {
+
+            try {
+                if ( q.getClass() == Byte.class||q.getClass() == Integer.class|| q.getClass() == Short.class||
+                        q.getClass() == Long.class|| q.getClass() == Float.class|| q.getClass() == Double.class){
+                     sum+=q.doubleValue();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                Integer ajdå = 0;
+                return (Q)ajdå;
+            }
+        }return (Q) sum;
     }
 }
