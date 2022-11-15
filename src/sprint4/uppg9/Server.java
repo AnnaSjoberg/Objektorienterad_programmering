@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    Protocol protocol = new Protocol();
+    Protocol2 protocol = new Protocol2();
     public Server(){
         int port = 33333;
 
