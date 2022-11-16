@@ -27,6 +27,8 @@ public class Client extends JFrame implements ActionListener {
             pwOut = new PrintWriter(socket.getOutputStream(), true);
             brIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            pwOut.println(username);
+
             String fromServer;
             while ((fromServer=brIn.readLine())!=null){
                 area.append(fromServer + "\n");
@@ -57,14 +59,14 @@ public class Client extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String input = username + ": ";
+        String input = username;
         if(e.getSource()==button){
             //skicka att personen lämnar
-            input += "HAS LEFT THE BUILDING";
+            input += " has left the chat";
             pwOut.println(input);
             System.exit(0);
         }else {
-            input += field.getText().trim();
+            input += ": " + field.getText().trim();
             pwOut.println(input);
             field.setText("");
         }

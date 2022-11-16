@@ -11,12 +11,12 @@ public class ServerListener {
 
     public ServerListener(){
         int port = 12345;
-        try (ServerSocket serverSocket = new ServerSocket(port);){
+        try (ServerSocket serverSocket = new ServerSocket(port)){
 
             while (true){
                 Socket clientSocket = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(clientSocket,multiWriter);
-
+                clientHandler.start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
