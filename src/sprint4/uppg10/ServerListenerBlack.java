@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerListener {
-    public ServerListener(){
+public class ServerListenerBlack {
+    public ServerListenerBlack(){
         int port = 12345;
         try (ServerSocket serverSocket = new ServerSocket(port);){
 
@@ -22,6 +22,6 @@ public class ServerListener {
     }
 
     public static void main(String[] args) {
-        ServerListener sl = new ServerListener();
+        ServerListenerBlack sl = new ServerListenerBlack();
     }
 }

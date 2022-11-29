@@ -10,12 +10,12 @@ public class JFrameDemoGrid extends JFrame {
 
     JFrameDemoGrid() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,2));
+        panel.setLayout(new GridLayout(1,2));
         add(panel);
         panel.add(label);
         panel.add(new JButton("No..."));
-        panel.add(button1);
-        panel.add(button2);
+        panel.add(button1,0,0);
+        panel.add(button2,0,0);
         pack();
         //  setSize(150,100);
         setLocationRelativeTo(null);

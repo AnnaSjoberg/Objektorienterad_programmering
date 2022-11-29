@@ -1,12 +1,10 @@
 package sprint4.uppg12;
 
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerListener {
-
     MultiWriter multiWriter = new MultiWriter();
 
     public ServerListener(){
@@ -22,10 +20,9 @@ public class ServerListener {
             throw new RuntimeException(e);
         }
 
-
     }
 
     public static void main(String[] args) {
-        ServerListener sl = new ServerListener();
+        ServerListener s = new ServerListener();
     }
 }
